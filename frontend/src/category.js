@@ -8,8 +8,11 @@ export default class Category {
     }
 
     render() {
-        this.element.innerHTML = `<h2>${this.name}</h2>`
-        console.log('here')
+        this.element.innerHTML = `
+        <h2 data-cat-id='${this.id}'>
+            ${this.name}
+        </h2>
+        `        
         return this.element
     }
 }

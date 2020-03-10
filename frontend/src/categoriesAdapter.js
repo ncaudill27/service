@@ -1,6 +1,6 @@
 import Category from './category.js'
 
-class categoriesAdapter {
+class CategoriesAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl
 
@@ -13,12 +13,13 @@ class categoriesAdapter {
         .then(categories => {
             categories.forEach( category => {
                 let cat = new Category(category)
-                this.element += cat.render()
+                this.element.appendChild(cat.render())
             })
         })
     }
 
 }
 
-const catAdapter = new categoriesAdapter('http://localhost:3000/categories')
-export default catAdapter
+const categoriesAdapter = new CategoriesAdapter('http://localhost:3000/categories')
+
+export default categoriesAdapter
