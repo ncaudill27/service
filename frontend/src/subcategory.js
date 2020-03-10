@@ -4,13 +4,14 @@ export default class Subcategory {
         this.name = name
         this.category_id = category_id
 
+        this.parent = document.getElementById(`category-${category_id}`)
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'menu-item')
     }
 
     render() {
         this.element.innerHTML = `
-        <h2 class='sub-category' data-subcat-id='${this.id}'>
+        <h2 id='subcategory-${this.id}'>
             ${this.name}
         </h2>
         `

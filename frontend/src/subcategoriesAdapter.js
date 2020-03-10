@@ -13,7 +13,7 @@ class SubcategoriesAdapter {
         .then(subcategories => {
             subcategories.forEach(subcategory => {
                 let subcat = new Subcategory(subcategory)
-                this.element.appendChild(subcat.render())
+                subcat.parent.appendChild(subcat.render())
             });
         })
     }

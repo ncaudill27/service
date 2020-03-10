@@ -9,7 +9,7 @@ export default class Category {
 
     render() {
         this.element.innerHTML = `
-        <h2 class='category' data-cat-id='${this.id}'>
+        <h2 id='category-${this.id}'>
             ${this.name}
         </h2>
         `        
