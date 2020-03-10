@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def index
     categories = Category.all
-    render json: categories
+    render json: categories, only: [:name, :id]
   end
 end
