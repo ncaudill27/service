@@ -1,0 +1,24 @@
+User Story
+
+    First Steps
+        Show categories in sidebar
+        Clicking category open items in main
+        Clicking item adds it to cart
+        Cart div hidden until items added
+
+    Phase Two
+        Worker
+            Can select category to view items
+            Can add items to cart
+            Can open and close tabs
+            
+            Late game
+                Can customize their layout
+
+        Manager
+            Can add and remove categories and items
+            Can alter items
+            Can keep inventory
+
+            Late game
+                Can alter what certain users see (bar/floor)
