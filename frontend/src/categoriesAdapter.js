@@ -3,6 +3,8 @@ import Category from './category.js'
 class categoriesAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl
+
+        this.element = document.querySelector('.sidebar')
     }
 
     getCategories() {
@@ -11,7 +13,7 @@ class categoriesAdapter {
         .then(categories => {
             categories.forEach( category => {
                 let cat = new Category(category)
-                cat.render()
+                this.element += cat.render()
             })
         })
     }
@@ -19,5 +21,4 @@ class categoriesAdapter {
 }
 
 const catAdapter = new categoriesAdapter('http://localhost:3000/categories')
-
-catAdapter.getCategories()
+export default catAdapter

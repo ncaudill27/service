@@ -8,8 +8,8 @@ export default class Category {
     }
 
     render() {
-        // this.element.innerHTML = `<h2>${this.name}</h2>`
+        this.element.innerHTML = `<h2>${this.name}</h2>`
         console.log('here')
-        // return this.element
+        return this.element
     }
 }
