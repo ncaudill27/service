@@ -1,3 +1,5 @@
+import Category from './category.js'
+
 class categoriesAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl
@@ -6,7 +8,12 @@ class categoriesAdapter {
     getCategories() {
         fetch(this.baseUrl)
         .then(resp => resp.json())
-        .then(categories => console.log(categories))
+        .then(categories => {
+            categories.forEach( category => {
+                let cat = new Category(category)
+                cat.render()
+            })
+        })
     }
 
 }
