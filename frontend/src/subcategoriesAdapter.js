@@ -1,3 +1,5 @@
+import Subcategory from './subcategory.js'
+
 class SubcategoriesAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl
@@ -8,9 +10,10 @@ class SubcategoriesAdapter {
     getSubcategories() {
         fetch(this.baseUrl)
         .then(resp => resp.json())
-        .then(categories => {
-            categories.forEach(category => {
-                console.log(category)
+        .then(subcategories => {
+            subcategories.forEach(subcategory => {
+                let subcat = new Subcategory(subcategory)
+                this.element.appendChild(subcat.render())
             });
         })
     }

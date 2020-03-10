@@ -7,4 +7,14 @@ export default class Subcategory {
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'menu-item')
     }
+
+    render() {
+        this.element.innerHTML = `
+        <h2 class='sub-category' data-subcat-id='${this.id}'>
+            ${this.name}
+        </h2>
+        `
+
+        return this.element
+    }
 }
