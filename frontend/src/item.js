@@ -14,6 +14,7 @@ export default class Item {
     }
 
     render() {
+        this.element.setAttribute('data-item-id', this.id)
         this.element.innerHTML = `
         <h4>
             ${this.name}

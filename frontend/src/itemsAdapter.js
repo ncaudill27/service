@@ -5,6 +5,7 @@ class ItemsAdapter {
         this.baseUrl = baseUrl
 
         this.element = document.querySelector('main')
+        this.element.addEventListener('click', this.handleCartAdd)
     }
 
     
@@ -19,6 +20,13 @@ class ItemsAdapter {
                 // this.element.appendChild(itemDiv)
             })
         })
+    }
+
+    handleCartAdd = e => {
+        const itemId = e.target.dataset.itemId
+        if (e.target.getAttribute('class') === 'card' || e.target.parentNode.getAttribute('class') === 'card') {
+            console.log(itemId)
+        }
     }
 }
 
