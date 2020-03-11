@@ -26,17 +26,14 @@ class SubcategoriesAdapter {
         })
     }
 
-// ! Non-functional
     displayItems(e) {
-        // const subcat = Subcategory.all.filter( sc => console.log(sc.id))
         const subId = e.target.dataset.subcategoryId
+        const subcat = Subcategory.all.find( sc => sc.id == subId)
+
         if (!(e.target.getAttribute('class') === 'submenu-item')) {
-           const subcat = Subcategory.all.find( sc => sc.id == subId)
            console.log(subcat.items())
         }
     }
-// ! Non-functional
-    findSubcategory = (obj, id) => obj.id === id
 }
 
 const subcategoriesAdapter = new SubcategoriesAdapter('http://localhost:3000/subcategories')
