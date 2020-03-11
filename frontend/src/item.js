@@ -26,6 +26,8 @@ export default class Item {
 
     addToCart = ()=> {
         const cart = document.querySelector('.cart')
+        cart.style.display = 'block'
+        
         if (this.cart) {
             return this.incrementCartItem()
         }
