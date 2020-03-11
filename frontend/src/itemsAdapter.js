@@ -9,6 +9,10 @@ class ItemsAdapter {
         this.allContainer = []
     }
 
+    get all() {
+        return console.log(this.allContainer)
+    }
+    
     getItems() {
         fetch(this.baseUrl)
         .then(resp => resp.json())

@@ -9,6 +9,10 @@ class SubcategoriesAdapter {
         this.allContainer = []
     }
 
+    get all() {
+        return console.log(this.allContainer)
+    }
+    
     getSubcategories() {
         fetch(this.baseUrl)
         .then(resp => resp.json())
