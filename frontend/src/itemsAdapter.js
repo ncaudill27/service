@@ -16,7 +16,7 @@ class ItemsAdapter {
                 let i = new Item(item)
                 let itemDiv = i.render()
 
-                this.element.appendChild(itemDiv)
+                // this.element.appendChild(itemDiv)
             })
         })
     }

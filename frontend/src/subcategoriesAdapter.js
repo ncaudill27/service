@@ -6,7 +6,7 @@ class SubcategoriesAdapter {
 
         this.element = document.querySelector('.sidebar')
 
-        this.element.addEventListener('click', this.displayItems)
+        this.element.addEventListener('click', this.handleSubmenuSelection)
     }
 
     
@@ -26,13 +26,23 @@ class SubcategoriesAdapter {
         })
     }
 
-    displayItems(e) {
+    handleSubmenuSelection = e => {
         const subId = e.target.dataset.subcategoryId
         const subcat = Subcategory.all.find( sc => sc.id == subId)
 
         if (!(e.target.getAttribute('class') === 'submenu-item')) {
-           console.log(subcat.items())
+            // console.log(subcat.items())
+           this.renderArrayOfItems(subcat.items())
         }
+    }
+
+    renderArrayOfItems(array) {
+        let main = document.querySelector('main')
+        main.innerHTML = ''
+        array.forEach( item => {
+            let card = item.render()
+            main.appendChild(card)
+        })
     }
 }
 
