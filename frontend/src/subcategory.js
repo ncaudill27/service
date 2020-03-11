@@ -6,7 +6,7 @@ export default class Subcategory {
 
         this.parent = document.getElementById(`category-${category_id}`)
         this.element = document.createElement('div')
-        this.element.setAttribute('class', 'menu-item')
+        this.element.setAttribute('class', 'submenu-item')
     }
 
     render() {
@@ -15,7 +15,6 @@ export default class Subcategory {
             ${this.name}
         </h2>
         `
-
         return this.element
     }
 }

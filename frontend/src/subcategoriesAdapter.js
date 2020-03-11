@@ -14,7 +14,10 @@ class SubcategoriesAdapter {
             subcategories.forEach(subcategory => {
                 const subcat = new Subcategory(subcategory)
                 const catDiv = subcat.parent.parentNode
-                catDiv.appendChild(subcat.render())
+                const subDiv = subcat.render()
+                // Hide submenu until click event
+                subDiv.style.display = 'none'
+                catDiv.appendChild(subDiv)
             });
         })
     }
