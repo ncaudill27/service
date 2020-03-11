@@ -5,6 +5,8 @@ class CategoriesAdapter {
         this.baseUrl = baseUrl
 
         this.element = document.querySelector('.sidebar')
+
+        this.element.addEventListener('click', this.toggleSubmenu)
     }
 
     getCategories() {
@@ -19,8 +21,15 @@ class CategoriesAdapter {
         })
     }
 
-    toggleSubmenu() {
-        
+    toggleSubmenu(e) {
+        const subMenu = e.target.parentNode.lastChild
+        if (!(e.target.getAttribute('class') === 'sidebar')) {
+            if (subMenu.style.display === 'none') {
+                subMenu.style.display = 'block'
+            } else {
+                subMenu.style.display = 'none'
+            }
+        }
     }
 
 }
