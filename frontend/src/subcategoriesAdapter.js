@@ -5,6 +5,8 @@ class SubcategoriesAdapter {
         this.baseUrl = baseUrl
 
         this.element = document.querySelector('.sidebar')
+
+        this.allContainer = []
     }
 
     getSubcategories() {
@@ -17,7 +19,9 @@ class SubcategoriesAdapter {
                 const subDiv = subcat.render()
                 // Hide submenu until click event
                 subDiv.style.display = 'none'
+
                 catDiv.appendChild(subDiv)
+                this.allContainer.push(subDiv)
             });
         })
     }

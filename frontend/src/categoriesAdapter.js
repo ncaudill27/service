@@ -5,6 +5,8 @@ class CategoriesAdapter {
         this.baseUrl = baseUrl
 
         this.element = document.querySelector('.sidebar')
+
+        this.allContainer = []
     }
 
     getCategories() {
@@ -12,8 +14,10 @@ class CategoriesAdapter {
         .then(resp => resp.json())
         .then(categories => {
             categories.forEach( category => {
-                let cat = new Category(category)
-                this.element.appendChild(cat.render())
+                const cat = new Category(category)
+                const catDiv = cat.render()
+                this.element.appendChild(catDiv)
+                this.allContainer.push(catDiv)
             })
         })
     }

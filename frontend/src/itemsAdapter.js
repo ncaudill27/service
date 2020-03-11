@@ -5,6 +5,8 @@ class ItemsAdapter {
         this.baseUrl = baseUrl
 
         this.element = document.querySelector('main')
+
+        this.allContainer = []
     }
 
     getItems() {
@@ -13,7 +15,9 @@ class ItemsAdapter {
         .then(items => {
             items.forEach(item => {
                 let i = new Item(item)
-                this.element.appendChild(i.render())
+                let itemDiv = i.render()
+                this.element.appendChild(itemDiv)
+                this.allContainer.push(itemDiv)
             })
         })
     }
