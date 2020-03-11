@@ -5,14 +5,8 @@ class CategoriesAdapter {
         this.baseUrl = baseUrl
 
         this.element = document.querySelector('.sidebar')
-
-        this.allContainer = []
     }
 
-    get all() {
-        return console.log(this.allContainer)
-    }
-    
     getCategories() {
         fetch(this.baseUrl)
         .then(resp => resp.json())
@@ -21,9 +15,12 @@ class CategoriesAdapter {
                 const cat = new Category(category)
                 const catDiv = cat.render()
                 this.element.appendChild(catDiv)
-                this.allContainer.push(catDiv)
             })
         })
+    }
+
+    toggleSubmenu() {
+        
     }
 
 }

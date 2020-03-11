@@ -5,13 +5,8 @@ class SubcategoriesAdapter {
         this.baseUrl = baseUrl
 
         this.element = document.querySelector('.sidebar')
-
-        this.allContainer = []
     }
 
-    get all() {
-        return console.log(this.allContainer)
-    }
     
     getSubcategories() {
         fetch(this.baseUrl)
@@ -25,7 +20,6 @@ class SubcategoriesAdapter {
                 subDiv.style.display = 'none'
 
                 catDiv.appendChild(subDiv)
-                this.allContainer.push(subDiv)
             });
         })
     }

@@ -5,13 +5,8 @@ class ItemsAdapter {
         this.baseUrl = baseUrl
 
         this.element = document.querySelector('main')
-
-        this.allContainer = []
     }
 
-    get all() {
-        return console.log(this.allContainer)
-    }
     
     getItems() {
         fetch(this.baseUrl)
@@ -20,8 +15,8 @@ class ItemsAdapter {
             items.forEach(item => {
                 let i = new Item(item)
                 let itemDiv = i.render()
+
                 this.element.appendChild(itemDiv)
-                this.allContainer.push(itemDiv)
             })
         })
     }
