@@ -10,9 +10,9 @@ export default class Item {
 
     render() {
         this.element.innerHTML = `
-        <h2>
+        <h4>
             ${this.name}
-        </h2>
+        </h4>
         `
         return this.element
     }
