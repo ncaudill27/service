@@ -6,6 +6,7 @@ export default class Item {
         this.id = id
         this.name = name
         this.subcategory_id = subcategory_id
+        this.cartCount = 0
 
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'card')
@@ -23,15 +24,35 @@ export default class Item {
         return this.element
     }
 
-    addToCart() {
+    addToCart = ()=> {
         const cart = document.querySelector('.cart')
-        this.element.setAttribute('class', 'cart-item')
+        if (this.cart) {
+            return this.incrementCartItem()
+        }
+        this.cart = this.createCartItem()
+        cart.appendChild(this.cart)
+    }
 
-        this.element.innerHTML = `
+    createCartItem() {
+        this.cart = document.createElement('div')
+        this.cart.setAttribute('class', 'cart-item')
+        this.cartCount += 1
+
+        this.cart.innerHTML = `
         <p>
-            ${this.name}
+            ${this.name.slice(0,5)}...(${this.cartCount})
         </p>
         `
-        cart.appendChild(this.element)
+        return this.cart
+    }
+
+    incrementCartItem() {
+        this.cartCount += 1
+        this.cart.innerHTML = `
+        <p>
+            ${this.name.slice(0,5)}...(${this.cartCount})
+        </p>
+        `
+        return this.cart
     }
 }
