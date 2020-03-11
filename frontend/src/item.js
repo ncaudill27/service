@@ -22,4 +22,16 @@ export default class Item {
         `
         return this.element
     }
+
+    addToCart() {
+        const cart = document.querySelector('.cart')
+        this.element.setAttribute('class', 'cart-item')
+
+        this.element.innerHTML = `
+        <p>
+            ${this.name}
+        </p>
+        `
+        cart.appendChild(this.element)
+    }
 }

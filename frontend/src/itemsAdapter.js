@@ -26,7 +26,8 @@ class ItemsAdapter {
         const itemId = this.setDataSetId(e)
 
         if (e.target.getAttribute('class') === 'card' || e.target.parentNode.getAttribute('class') === 'card') {
-            console.log(itemId)
+            const item = Item.all.find(item => item.id == itemId)
+            item.addToCart()
         }
     }
 
