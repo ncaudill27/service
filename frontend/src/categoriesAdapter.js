@@ -23,7 +23,7 @@ class CategoriesAdapter {
 
     toggleSubmenu(e) {
         const subMenu = e.target.parentNode.lastChild
-        if (!(e.target.getAttribute('class') === 'sidebar')) {
+        if (!(e.target.getAttribute('class') === 'menu-item')) {
             if (subMenu.style.display === 'none') {
                 subMenu.style.display = 'block'
             } else {

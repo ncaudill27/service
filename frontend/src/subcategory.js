@@ -16,7 +16,7 @@ export default class Subcategory {
 
     render() {
         this.element.innerHTML = `
-        <h2 id='subcategory-${this.id}'>
+        <h2 data-subcategory-id='${this.id}'>
             ${this.name}
         </h2>
         `
