@@ -12,8 +12,9 @@ class SubcategoriesAdapter {
         .then(resp => resp.json())
         .then(subcategories => {
             subcategories.forEach(subcategory => {
-                let subcat = new Subcategory(subcategory)
-                subcat.parent.appendChild(subcat.render())
+                const subcat = new Subcategory(subcategory)
+                const catDiv = subcat.parent.parentNode
+                catDiv.appendChild(subcat.render())
             });
         })
     }
