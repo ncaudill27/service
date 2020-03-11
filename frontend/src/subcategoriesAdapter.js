@@ -26,15 +26,16 @@ class SubcategoriesAdapter {
         })
     }
 
-    
+// ! Non-functional
     displayItems(e) {
         // const subcat = Subcategory.all.filter( sc => console.log(sc.id))
-        let subId = e.target.dataset.subcategoryId
+        const subId = e.target.dataset.subcategoryId
         if (!(e.target.getAttribute('class') === 'submenu-item')) {
-            console.log(Subcategory.all.find(sc => sc.id === subId))
+           const subcat = Subcategory.all.find( sc => sc.id == subId)
+           console.log(subcat.items())
         }
     }
-
+// ! Non-functional
     findSubcategory = (obj, id) => obj.id === id
 }
 

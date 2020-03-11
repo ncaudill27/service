@@ -1,3 +1,5 @@
+import Item from './item.js'
+
 export default class Subcategory {
 
     static all = []
@@ -12,6 +14,10 @@ export default class Subcategory {
         this.element.setAttribute('class', 'submenu-item')
 
         Subcategory.all.push(this)
+    }
+    
+    items() {
+        return Item.all.filter( item => item.subcategory_id === this.id )
     }
 
     render() {

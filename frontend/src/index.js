@@ -9,5 +9,4 @@ document.addEventListener('DOMContentLoaded', ()=> {
     categoriesAdapter.getCategories()
     setTimeout(subcategoriesAdapter.getSubcategories(), 100)
     itemsAdapter.getItems()
-    console.log(Subcategory.all)
 })
