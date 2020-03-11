@@ -23,10 +23,19 @@ class ItemsAdapter {
     }
 
     handleCartAdd = e => {
-        const itemId = e.target.dataset.itemId
+        const itemId = this.setDataSetId(e)
+
         if (e.target.getAttribute('class') === 'card' || e.target.parentNode.getAttribute('class') === 'card') {
             console.log(itemId)
         }
+    }
+
+    setDataSetId(e) {
+        let itemId = e.target.dataset.itemId
+        if (e.target.nodeName === 'H4') {
+            itemId = e.target.parentNode.dataset.itemId
+        }
+        return itemId
     }
 }
 
