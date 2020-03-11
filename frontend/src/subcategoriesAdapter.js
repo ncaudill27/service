@@ -29,10 +29,13 @@ class SubcategoriesAdapter {
     
     displayItems(e) {
         // const subcat = Subcategory.all.filter( sc => console.log(sc.id))
+        let subId = e.target.dataset.subcategoryId
         if (!(e.target.getAttribute('class') === 'submenu-item')) {
-            console.log(e.target.dataset.subcategoryId)
+            console.log(Subcategory.all.find(sc => sc.id === subId))
         }
     }
+
+    findSubcategory = (obj, id) => obj.id === id
 }
 
 const subcategoriesAdapter = new SubcategoriesAdapter('http://localhost:3000/subcategories')
