@@ -6,7 +6,6 @@ class ItemsAdapter {
 
         this.element = document.querySelector('main')
     }
-
     
     getItems() {
         fetch(this.baseUrl)

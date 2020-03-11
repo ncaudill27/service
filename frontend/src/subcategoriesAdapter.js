@@ -8,7 +8,6 @@ class SubcategoriesAdapter {
 
         this.element.addEventListener('click', this.handleSubmenuSelection)
     }
-
     
     getSubcategories() {
         fetch(this.baseUrl)

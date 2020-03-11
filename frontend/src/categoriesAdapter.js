@@ -9,6 +9,10 @@ class CategoriesAdapter {
         this.element.addEventListener('click', this.toggleSubmenu)
     }
 
+    get all() {
+        return console.log(this.allContainer)
+    }
+    
     getCategories() {
         fetch(this.baseUrl)
         .then(resp => resp.json())
