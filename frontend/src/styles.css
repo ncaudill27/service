@@ -21,6 +21,16 @@ header h1 {
     float: left;
 }
 
+.cart {
+    margin: 10px auto 10px auto;
+    width: 100px;
+    background-color: #98FB98;
+    float: right;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
 .menu-item:hover {
     background-color: grey;
     cursor: pointer;
