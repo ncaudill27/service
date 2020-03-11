@@ -16,6 +16,7 @@ export default class Category {
         this.element.innerHTML = `
         <h2 id='category-${this.id}'>
             ${this.name}
+            <img src='/deletebutton.png' alt='Delete button'>
         </h2>
         `        
         return this.element

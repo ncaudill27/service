@@ -24,6 +24,7 @@ export default class Subcategory {
         this.element.innerHTML = `
         <h2 data-subcategory-id='${this.id}'>
             ${this.name}
+            <img src='/deletebutton.png' alt='Delete button'>
         </h2>
         `
         return this.element
