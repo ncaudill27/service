@@ -1,4 +1,7 @@
 export default class Subcategory {
+
+    static all = []
+    
     constructor({id, name, category_id}) {
         this.id = id
         this.name = name
@@ -7,6 +10,8 @@ export default class Subcategory {
         this.parent = document.getElementById(`category-${category_id}`)
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'submenu-item')
+
+        Subcategory.all.push(this)
     }
 
     render() {

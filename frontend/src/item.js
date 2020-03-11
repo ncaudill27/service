@@ -1,4 +1,7 @@
 export default class Item {
+
+    static all = []
+    
     constructor({id, name, subcategory_id}) {
         this.id = id
         this.name = name
@@ -6,6 +9,8 @@ export default class Item {
 
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'card')
+
+        Item.all.push(this)
     }
 
     render() {
