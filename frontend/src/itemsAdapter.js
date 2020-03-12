@@ -23,14 +23,6 @@ class ItemsAdapter {
         })
     }
 
-    handleCartAdd = e => {
-        if (this.addToCartTargetCheck(e)) {
-            const itemId = this.setDataSetId(e)
-            const item = Item.all.find(item => item.id == itemId)
-            item.addToCart()
-        }
-    }
-
     handleDelete = e => {
         if (e.target.matches('img')) {
             const itemId = e.target.parentNode.dataset.itemId
@@ -45,12 +37,22 @@ class ItemsAdapter {
             .then(this.deleteItem)
         }
     }
-
+    
     deleteItem({item_id}) {
         const item = Item.all.find(i => i.id == item_id)
         item.element.remove()
     }
+    
+// Functions relevant to adding items to cart.
+    handleCartAdd = e => {
+        if (this.addToCartTargetCheck(e)) {
+            const itemId = this.setDataSetId(e)
+            const item = Item.all.find(item => item.id == itemId)
+            item.addToCart()
+        }
+    }
 
+// Allows both .card div or h4 within to be clickable for cart additions
     setDataSetId(e) {
         let itemId = e.target.dataset.itemId
         if (e.target.matches('h4')) {
@@ -59,11 +61,12 @@ class ItemsAdapter {
         return itemId
     }
 
+// Added for readability
     addToCartTargetCheck(e) {
         return e.target.matches('.card') || e.target.parentNode.matches('.card') && !e.target.matches('img')
     }
 }
-
+    
 const itemsAdapter = new ItemsAdapter('http://localhost:3000/items')
 
 export default itemsAdapter
