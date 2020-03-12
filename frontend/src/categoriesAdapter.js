@@ -51,12 +51,17 @@ class CategoriesAdapter {
         if (e.target.matches('.add-category')) {
             this.renderCategoryForm()
             const addForm = document.getElementById('add-category')
+            addForm.addEventListener('submit', e => {
+                e.preventDefault()
+                const name = addForm.querySelector('input')
+                console.log(name.value)
+            })
 
-            addForm.addEventListener('click', this.createCategory)
         }
     }
 
     createCategory(e) {
+        debugger
         e.preventDefault()
         console.log(e.target.parentNode)
         // fetch(`${this.baseUrl}`), {
