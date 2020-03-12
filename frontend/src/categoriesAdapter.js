@@ -1,4 +1,5 @@
 import Category from './category.js'
+import subcategoriesAdapter from './subcategoriesAdapter.js'
 
 class CategoriesAdapter {
     constructor(baseUrl) {
@@ -23,10 +24,11 @@ class CategoriesAdapter {
             const catDiv = cat.render()
             this.element.appendChild(catDiv)
         })
+        subcategoriesAdapter.getSubcategories()
     }
 
     destroyCategory = e => {
-        if (e.target.matches('img')) {
+        if (e.target.matches('.menu-item > h2 > img')) {
             const categoryId = e.target.parentNode.dataset.categoryId
             fetch(`${this.baseUrl}/${categoryId}`, {
                 method: 'DELETE',
@@ -56,7 +58,7 @@ class CategoriesAdapter {
 
     createCategory(e) {
         e.preventDefault()
-        console.log(e.target)
+        console.log(e.target.parentNode)
         // fetch(`${this.baseUrl}`), {
         //     method: 'POST',
         //     header: {

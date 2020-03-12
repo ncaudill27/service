@@ -7,6 +7,5 @@ import Item from './item.js'
 
 document.addEventListener('DOMContentLoaded', ()=> {
     categoriesAdapter.getCategories()
-    setTimeout(subcategoriesAdapter.getSubcategories(), 100)
     itemsAdapter.getItems()
 })

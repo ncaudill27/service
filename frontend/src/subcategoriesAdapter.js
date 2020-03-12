@@ -32,7 +32,7 @@ class SubcategoriesAdapter {
     }
 
     destroySubcategory = e => {
-        if (e.target.matches('img')) {
+        if (e.target.matches('.submenu-item > h2 > img')) {
             const subcategoryId = e.target.parentNode.dataset.subcategoryId
             fetch(`${this.baseUrl}/${subcategoryId}`, {
                 method: 'DELETE',
