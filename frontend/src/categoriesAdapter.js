@@ -19,12 +19,14 @@ class CategoriesAdapter {
     }
 
     renderCategories = categories => {
-        categories.forEach( category => {
-            const cat = new Category(category)
-            const catDiv = cat.render()
-            this.element.appendChild(catDiv)
-        })
+        categories.forEach(this.renderCategory)
         subcategoriesAdapter.getSubcategories()
+    }
+
+    renderCategory = category => {
+        const cat = new Category(category)
+        const catDiv = cat.render()
+        this.element.appendChild(catDiv)
     }
 
     destroyCategory = e => {
@@ -50,27 +52,36 @@ class CategoriesAdapter {
     handleAddCategory = e => {
         if (e.target.matches('.add-category')) {
             this.renderCategoryForm()
+        }
+        // Once form available listen for submit
+        if (document.getElementById('add-category')) {
             const addForm = document.getElementById('add-category')
             addForm.addEventListener('submit', e => {
                 e.preventDefault()
                 const name = addForm.querySelector('input')
-                console.log(name.value)
+                this.createCategory(name.value) // Value for post request
             })
-
         }
     }
 
-    createCategory(e) {
-        debugger
-        e.preventDefault()
-        console.log(e.target.parentNode)
-        // fetch(`${this.baseUrl}`), {
-        //     method: 'POST',
-        //     header: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     }
-        // }
+    createCategory(categoryName) {
+        const newCategoryObj = {name: categoryName}
+        fetch(`${this.baseUrl}`), {
+            method: 'POST',
+            header: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(newCategoryObj)
+        }
+        .then(resp => resp.json())
+        .then(this.renderCategory)
+    }
+
+    formInfo = e => {
+
+        return addForm
+
     }
 
     renderCategoryForm() {
