@@ -18,15 +18,17 @@ class SubcategoriesAdapter {
     }
 
     renderSubcategories = subcategories => {
-        subcategories.forEach(subcategory => {
-            const subcat = new Subcategory(subcategory)
-            const catDiv = subcat.parent.parentNode
-            const subDiv = subcat.render()
-            // Hide submenu until click event
-            subDiv.style.display = 'none'
+        subcategories.forEach(this.renderSingleCategory)
+    }
 
-            catDiv.appendChild(subDiv)
-        });
+    renderSingleCategory(subcategory) {
+        const subcat = new Subcategory(subcategory)
+        const catDiv = subcat.parent.parentNode //
+        const subDiv = subcat.render()
+        // Hide submenu until click event
+        subDiv.style.display = 'none'
+
+        catDiv.appendChild(subDiv)
     }
 
     destroyCategory = e => {
