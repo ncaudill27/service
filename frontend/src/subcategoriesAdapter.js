@@ -7,7 +7,7 @@ class SubcategoriesAdapter {
         this.element = document.querySelector('.sidebar')
 
         this.element.addEventListener('click', this.handleSubmenuSelection)
-        this.element.addEventListener('click', this.destroyCategory)
+        this.element.addEventListener('click', this.destroySubcategory)
     }
 
     
@@ -23,7 +23,7 @@ class SubcategoriesAdapter {
 
     renderSingleCategory(subcategory) {
         const subcat = new Subcategory(subcategory)
-        const catDiv = subcat.parent.parentNode //
+        const catDiv = subcat.parentCategoryElement // Grab parent div for appending
         const subDiv = subcat.render()
         // Hide submenu until click event
         subDiv.style.display = 'none'
@@ -31,9 +31,9 @@ class SubcategoriesAdapter {
         catDiv.appendChild(subDiv)
     }
 
-    destroyCategory = e => {
-        const subcategoryId = e.target.parentNode.dataset.subcategoryId
-        if (!!subcategoryId) {
+    destroySubcategory = e => {
+        if (e.target.matches('img')) {
+            const subcategoryId = e.target.parentNode.dataset.subcategoryId
             fetch(`${this.baseUrl}/${subcategoryId}`, {
                 method: 'DELETE',
                 header: {
