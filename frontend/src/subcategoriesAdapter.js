@@ -11,7 +11,7 @@ class SubcategoriesAdapter {
     }
 
     
-    getSubcategories = e => {
+    getSubcategories = () => {
         fetch(this.baseUrl)
         .then(resp => resp.json())
         .then(this.renderSubcategories)

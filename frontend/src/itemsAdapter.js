@@ -9,16 +9,16 @@ class ItemsAdapter {
     }
 
     
-    getItems() {
+    getItems = () => {
         fetch(this.baseUrl)
         .then(resp => resp.json())
-        .then(items => {
-            items.forEach(item => {
-                let i = new Item(item)
-                let itemDiv = i.render()
+        .then(this.renderItems)
+    }
 
-                // this.element.appendChild(itemDiv)
-            })
+    renderItems(items) {
+        items.forEach(item => {
+            let i = new Item(item)
+            i.render()
         })
     }
 

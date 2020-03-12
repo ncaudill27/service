@@ -10,7 +10,7 @@ class CategoriesAdapter {
         this.element.addEventListener('click', this.destroyCategory)
     }
 
-    getCategories = e => {
+    getCategories = () => {
         fetch(this.baseUrl)
         .then(resp => resp.json())
         .then(this.renderCategories)
