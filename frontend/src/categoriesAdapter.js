@@ -10,34 +10,38 @@ class CategoriesAdapter {
         this.element.addEventListener('click', this.destroyCategory)
     }
 
-    getCategories() {
+    getCategories = e => {
         fetch(this.baseUrl)
         .then(resp => resp.json())
-        .then(categories => {
-            categories.forEach( category => {
-                const cat = new Category(category)
-                const catDiv = cat.render()
-                this.element.appendChild(catDiv)
-            })
+        .then(this.renderCategories)
+    }
+
+    renderCategories = categories => {
+        categories.forEach( category => {
+            const cat = new Category(category)
+            const catDiv = cat.render()
+            this.element.appendChild(catDiv)
         })
     }
 
     destroyCategory = e => {
         const categoryId = e.target.parentNode.dataset.categoryId
-        fetch(`${this.baseUrl}/${categoryId}`, {
-            method: 'DELETE',
-            header: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-        .then(resp => resp.json())
-        .then(this.deleteCategory)
+        if (!!categoryId) {
+            fetch(`${this.baseUrl}/${categoryId}`, {
+                method: 'DELETE',
+                header: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(resp => resp.json())
+            .then(this.deleteCategory)
+        }
     }
 
     deleteCategory({category_id}) {
         const category = Category.all.find(cat => cat.id == category_id)
-        category.remove()
+        category.element.remove()
     }
 
     toggleSubmenu(e) {
