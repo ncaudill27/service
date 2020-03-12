@@ -24,9 +24,8 @@ class ItemsAdapter {
     }
 
     handleCartAdd = e => {
-        const itemId = this.setDataSetId(e)
-
-        if (e.target.getAttribute('class') === 'card' || e.target.parentNode.getAttribute('class') === 'card') {
+        if (this.addToCartTargetCheck(e)) {
+            const itemId = this.setDataSetId(e)
             const item = Item.all.find(item => item.id == itemId)
             item.addToCart()
         }
@@ -54,10 +53,14 @@ class ItemsAdapter {
 
     setDataSetId(e) {
         let itemId = e.target.dataset.itemId
-        if (e.target.nodeName === 'H4') {
+        if (e.target.matches('h4')) {
             itemId = e.target.parentNode.dataset.itemId
         }
         return itemId
+    }
+
+    addToCartTargetCheck(e) {
+        return e.target.matches('.card') || e.target.parentNode.matches('.card') && !e.target.matches('img')
     }
 }
 
