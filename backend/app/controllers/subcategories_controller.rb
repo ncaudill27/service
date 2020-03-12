@@ -6,6 +6,7 @@ class SubcategoriesController < ApplicationController
 
   def destroy
     subcategory = Subcategory.find_by_id(params[:id])
+    subcategory.destroy
     render json: {subcategory_id: subcategory.id}
   end
 end

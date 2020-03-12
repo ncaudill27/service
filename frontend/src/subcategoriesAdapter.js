@@ -7,6 +7,7 @@ class SubcategoriesAdapter {
         this.element = document.querySelector('.sidebar')
 
         this.element.addEventListener('click', this.handleSubmenuSelection)
+        this.element.addEventListener('click', this.destroyCategory)
     }
 
     
@@ -26,6 +27,26 @@ class SubcategoriesAdapter {
 
             catDiv.appendChild(subDiv)
         });
+    }
+
+    destroyCategory = e => {
+        const subcategoryId = e.target.parentNode.dataset.subcategoryId
+        if (!!subcategoryId) {
+            fetch(`${this.baseUrl}/${subcategoryId}`, {
+                method: 'DELETE',
+                header: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(resp => resp.json())
+            .then(this.deleteSubcategory)
+        }
+    }
+
+    deleteSubcategory({subcategory_id}) {
+        const subcategory = Subcategory.all.find(sub => sub.id == subcategory_id)
+        subcategory.element.remove()
     }
 
     handleSubmenuSelection = e => {
