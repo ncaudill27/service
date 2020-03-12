@@ -18,7 +18,13 @@ export default class Category {
             ${this.name}
             <img src='/deletebutton.png' alt='Delete button'>
         </h2>
-        `        
+        `
+        // Node to attack Subcategories to
+        const submenu = document.createElement('div')
+        submenu.setAttribute('id', `submenu-${this.id}`)
+        submenu.setAttribute('class', 'submenu')
+        this.element.appendChild(submenu)
+
         return this.element
     }
 }

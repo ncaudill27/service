@@ -26,7 +26,7 @@ class SubcategoriesAdapter {
         const catDiv = subcat.parentCategoryElement // Grab parent div for appending
         const subDiv = subcat.render()
         // Hide submenu until click event
-        subDiv.style.display = 'none'
+        catDiv.style.display = 'none'
 
         catDiv.appendChild(subDiv)
     }

@@ -25,10 +25,12 @@ categories.each do |pair|
   category = Category.create(name: pair.keys[0])
 
   pair.values.each do |val|
-    sub_cat = Subcategory.create(name: val, category_id: category.id)
-    10.times do
-      name = Faker::Food.dish
-      Item.create(name: name, subcategory_id: sub_cat.id)
+    val.each do |name|
+      sub_cat = Subcategory.create(name: name, category_id: category.id)
+      10.times do
+        food_name = Faker::Food.dish
+        Item.create(name: food_name, subcategory_id: sub_cat.id)
+      end
     end
   end
 end                      
