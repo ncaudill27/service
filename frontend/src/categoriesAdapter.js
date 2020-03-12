@@ -25,8 +25,8 @@ class CategoriesAdapter {
     }
 
     destroyCategory = e => {
-        const categoryId = e.target.parentNode.dataset.categoryId
-        if (!!categoryId) {
+        if (e.target.matches('img')) {
+            const categoryId = e.target.parentNode.dataset.categoryId
             fetch(`${this.baseUrl}/${categoryId}`, {
                 method: 'DELETE',
                 header: {
