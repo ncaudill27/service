@@ -39,7 +39,7 @@ header h1 {
 img {
     height: 20px;
     width: 20px;
-    margin-right: 10px;
+    margin-right: 5px;
     float: right;
 }
 
@@ -63,7 +63,7 @@ main {
     height: 90px;
     width: 120px;
     box-shadow: 1px 1px grey;
-    padding: 10px;
+    padding: 5px;
     border-radius: 10px;
     text-align: center;
 }
