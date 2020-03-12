@@ -48,17 +48,22 @@ class CategoriesAdapter {
     handleAddCategory = e => {
         if (e.target.matches('.add-category')) {
             this.renderCategoryForm()
+            const addForm = document.getElementById('add-category')
+
+            addForm.addEventListener('click', this.createCategory)
         }
     }
 
-    createCategory() {
-        fetch(`${this.baseUrl}`), {
-            method: 'POST',
-            header: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        }
+    createCategory(e) {
+        e.preventDefault()
+        console.log(e.target)
+        // fetch(`${this.baseUrl}`), {
+        //     method: 'POST',
+        //     header: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json'
+        //     }
+        // }
     }
 
     renderCategoryForm() {
@@ -66,7 +71,11 @@ class CategoriesAdapter {
         main.innerHTML = `
         <div class='form-card'>
             <h4>New Category</h4>
-            <input type="text" name="name">
+            <form id='add-category'>
+                <label>Name</label>
+                <input type='text' name='name'>
+                <input type='submit' value='Add'>
+            </form>
         <div>
         `
     }
