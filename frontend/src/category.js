@@ -14,7 +14,7 @@ export default class Category {
 
     render() {
         this.element.innerHTML = `
-        <h2 id='category-${this.id}'>
+        <h2 data-category-id='${this.id}'>
             ${this.name}
             <img src='/deletebutton.png' alt='Delete button'>
         </h2>

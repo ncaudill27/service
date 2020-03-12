@@ -9,7 +9,7 @@ export default class Subcategory {
         this.name = name
         this.category_id = category_id
 
-        this.parent = document.getElementById(`category-${category_id}`)
+        this.parent = document.querySelector(`h2[data-category-id="${category_id}"]`)
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'submenu-item')
 
