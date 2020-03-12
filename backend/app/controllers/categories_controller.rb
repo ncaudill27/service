@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     category = Category.find_by_id(params[:id])
+    category.destroy
     render json: {category_id: category.id}
   end
 end
