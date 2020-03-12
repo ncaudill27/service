@@ -67,3 +67,13 @@ main {
     border-radius: 10px;
     text-align: center;
 }
+
+.form-card {
+    background-color: #eeeeee;
+    height: auto;
+    width: 300px;
+    box-shadow: 1px 1px grey;
+    padding: 0px 25px 25px 25px;
+    border-radius: 10px;
+    text-align: center;
+}

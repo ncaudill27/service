@@ -8,6 +8,7 @@ class CategoriesAdapter {
 
         this.element.addEventListener('click', this.toggleSubmenu)
         this.element.addEventListener('click', this.destroyCategory)
+        this.element.addEventListener('click', this.handleAddCategory)
     }
 
     getCategories = () => {
@@ -42,6 +43,32 @@ class CategoriesAdapter {
     deleteCategory({category_id}) {
         const category = Category.all.find(cat => cat.id == category_id)
         category.element.remove()
+    }
+
+    handleAddCategory = e => {
+        if (e.target.matches('.add-category')) {
+            this.renderCategoryForm()
+        }
+    }
+
+    createCategory() {
+        fetch(`${this.baseUrl}`), {
+            method: 'POST',
+            header: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }
+    }
+
+    renderCategoryForm() {
+        const main = document.querySelector('main')
+        main.innerHTML = `
+        <div class='form-card'>
+            <h4>New Category</h4>
+            <input type="text" name="name">
+        <div>
+        `
     }
 
     toggleSubmenu(e) {
