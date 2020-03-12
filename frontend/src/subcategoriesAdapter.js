@@ -52,11 +52,9 @@ class SubcategoriesAdapter {
     }
 
     handleSubmenuSelection = e => {
-        const subId = e.target.dataset.subcategoryId
-        const subcat = Subcategory.all.find( sc => sc.id == subId)
-
-        if (!(e.target.getAttribute('class') === 'submenu-item')) {
-            // console.log(subcat.items())
+        if (e.target.matches('.submenu-item > h2')) {
+            const subId = e.target.dataset.subcategoryId
+            const subcat = Subcategory.all.find(sc => sc.id == subId)
            this.renderArrayOfItems(subcat.items())
         }
     }
