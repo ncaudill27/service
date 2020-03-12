@@ -10,20 +10,22 @@ class SubcategoriesAdapter {
     }
 
     
-    getSubcategories() {
+    getSubcategories = e => {
         fetch(this.baseUrl)
         .then(resp => resp.json())
-        .then(subcategories => {
-            subcategories.forEach(subcategory => {
-                const subcat = new Subcategory(subcategory)
-                const catDiv = subcat.parent.parentNode
-                const subDiv = subcat.render()
-                // Hide submenu until click event
-                subDiv.style.display = 'none'
+        .then(this.renderSubcategories)
+    }
 
-                catDiv.appendChild(subDiv)
-            });
-        })
+    renderSubcategories = subcategories => {
+        subcategories.forEach(subcategory => {
+            const subcat = new Subcategory(subcategory)
+            const catDiv = subcat.parent.parentNode
+            const subDiv = subcat.render()
+            // Hide submenu until click event
+            subDiv.style.display = 'none'
+
+            catDiv.appendChild(subDiv)
+        });
     }
 
     handleSubmenuSelection = e => {
