@@ -4,9 +4,20 @@ class CategoriesController < ApplicationController
     render json: categories, only: [:name, :id]
   end
 
+  def create
+    byebug
+    # category = Category.new()
+  end
+
   def destroy
     category = Category.find_by_id(params[:id])
     category.destroy
     render json: {category_id: category.id}
   end
+
+  # private
+
+  # def category_params
+  #   params.require(:category).permit(:name)
+  # end
 end
