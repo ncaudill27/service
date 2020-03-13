@@ -68,22 +68,15 @@ class CategoriesAdapter {
         const newCategoryObj = {name: categoryName}
         const configObj = {
             method: 'POST',
-            header: {
+            headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Accepts': 'application/json'
             },
             body: JSON.stringify(newCategoryObj)
         }
-        (async () => {
-        const rawResponse = await fetch(`${this.baseUrl}`, configObj)
-        const content = await rawResponse.json()
-
-        console.log(content)
-         
+        fetch(this.baseUrl, configObj)
         .then(resp => resp.json())
-        .then(obj => console.log(obj))
-        })()
-        // this.renderCategory
+        .then(this.renderCategory)
     }
 
     renderCategoryForm() {

@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
   def update
     item = Item.find_by_id(params[:id])
     item.name = params[:name]
-    byebug
     render json: item, only: [:id, :name, :subcategory_id]
   end
 

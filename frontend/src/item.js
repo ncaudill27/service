@@ -82,6 +82,7 @@ export default class Item {
     submitEdit = e => {
         const reqObj = {name: this.name, id: this.id, subcategory_id: this.subcategory_id}
         itemsAdapter.patchItem(reqObj)
+        Item.getMainState()
     }
 
 // Functions relative to cart
