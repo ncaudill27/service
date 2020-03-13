@@ -36,6 +36,40 @@ header h1 {
     margin-left: -30px;
 }
 
+.menu-item {
+    position: relative;
+}
+
+.submenu {
+    background-color: #FFEFD5;
+}
+.submenu li {
+    list-style-type: none;
+    position: relative;
+    font-weight: lighter;
+}
+
+img {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    height: 15px;
+    width: 15px;
+    margin-right: 5px;
+    float: right;
+}
+
+img.edit {
+    height: 20px;
+    width: 20px;
+    right: 20px;
+    top: 5px;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
 .cart {
     display: none;
     margin: 10px auto 10px auto;
@@ -47,24 +81,6 @@ header h1 {
     border-radius: 5px;
     text-align: left;
 }
-
-.submenu {
-    list-style-type: none;
-    background-color: #FFEFD5;
-    font-weight: lighter;
-}
-
-img {
-    height: 20px;
-    width: 20px;
-    margin-right: 5px;
-    float: right;
-}
-
-img:hover {
-    cursor: pointer;
-}
-
 
 main {
     display: grid;
