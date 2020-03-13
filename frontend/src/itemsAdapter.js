@@ -28,7 +28,7 @@ class ItemsAdapter {
             const itemId = e.target.parentNode.dataset.itemId
             fetch(`${this.baseUrl}/${itemId}`, {
                 method: 'DELETE',
-                header: {
+                headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 }
@@ -46,12 +46,12 @@ class ItemsAdapter {
     patchItem = itemObj => {
         const configObj = {
             method: 'PATCH',
-            header: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
             body: JSON.stringify(itemObj)
         }
         fetch(`${this.baseUrl}/${itemObj.id}`, configObj)
         .then(resp => resp.json())
-        .then(obj => console.log(obj))
+        .then(Item.updateItem)
     }
     
 // Functions relevant to adding items to cart.

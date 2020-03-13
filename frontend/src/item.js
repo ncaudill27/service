@@ -8,6 +8,12 @@ export default class Item {
         return Item.all.find(item => item.id == itemId)
     }
 
+    static updateItem({id, name, subcategory_id}) {
+        const item = Item.previousState.find(item => item.id == id)
+        item.name = name
+        item.render()
+    }
+
     static previousState = []
 
     static saveMainState = () => {
@@ -80,7 +86,9 @@ export default class Item {
     }
 
     submitEdit = e => {
-        const reqObj = {name: this.name, id: this.id, subcategory_id: this.subcategory_id}
+        const inputs = document.querySelectorAll('input')
+        const name = inputs[0].value
+        const reqObj = {name: name, id: this.id, subcategory_id: this.subcategory_id}
         itemsAdapter.patchItem(reqObj)
         Item.getMainState()
     }
