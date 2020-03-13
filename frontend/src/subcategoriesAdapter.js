@@ -1,4 +1,5 @@
 import Subcategory from './subcategory.js'
+import Item from './item.js'
 
 class SubcategoriesAdapter {
     constructor(baseUrl) {

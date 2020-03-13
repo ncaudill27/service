@@ -2,6 +2,16 @@ import itemsAdapter from "./itemsAdapter.js"
 
 export default class Item {
 
+    constructor({id, name, subcategory_id}) {
+        this.id = id
+        this.name = name
+        this.subcategory_id = subcategory_id
+        this.cartCount = 0
+
+        this.element = document.createElement('div')
+        this.element.setAttribute('class', 'card')
+    }
+
     static all = []
 
     static findById(itemId) {
@@ -28,18 +38,16 @@ export default class Item {
     static getMainState = () => {
         let main = document.querySelector('main')
         main.innerHTML = ''
-        Item.previousState.map( item => main.appendChild(item.element))
+        Item.previousState.map(item => main.appendChild(item.element))
     }
 
-    constructor({id, name, subcategory_id}) {
-        this.id = id
-        this.name = name
-        this.subcategory_id = subcategory_id
-        this.cartCount = 0
-
-        this.element = document.createElement('div')
-        this.element.setAttribute('class', 'card')
-    }
+    // static appendAddItemBtn() {
+    //     const addBtn = document.createElement('div')
+    //     addBtn.setAttribute('class', 'card')
+    //     addBtn.setAttribute('id', 'add-item')
+    //     addBtn.innerHTML = `<h4>Add Item</h4>`
+    //     return addBtn
+    // }
 
     render = () => {
         this.element.setAttribute('data-item-id', this.id)
@@ -60,8 +68,7 @@ export default class Item {
         return this.element
     }
     
-    handleItemEdit = e => {
-        console.log(e.target.parentNode.dataset.itemId)
+    handleItemEdit = () => {
         Item.saveMainState()
         this.renderEditForm()
     }
@@ -83,6 +90,10 @@ export default class Item {
 
         this.cancelBtn = document.getElementById('cancel')
         this.cancelBtn.addEventListener('click', Item.getMainState)
+    }
+
+    renderNewForm = () => {
+
     }
 
     submitEdit = e => {

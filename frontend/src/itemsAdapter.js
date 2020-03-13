@@ -7,6 +7,10 @@ class ItemsAdapter {
         this.element = document.querySelector('main')
         this.element.addEventListener('click', this.handleCartAdd)
         this.element.addEventListener('click', this.handleItemDelete)
+        this.element.addEventListener('click', this.handleItemCreate)
+
+        this.addBtn = document.querySelector('.add-item')
+        this.addBtn.addEventListener('click', this.handleItemCreate)
     }
 
     
@@ -21,6 +25,13 @@ class ItemsAdapter {
             let i = new Item(item)
             i.render()
         })
+    }
+
+    handleItemCreate = e => {
+        if (e.target.matches('.add-item')) {
+
+            console.log('here')
+        }
     }
 
     handleItemDelete = e => {
