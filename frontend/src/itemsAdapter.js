@@ -1,6 +1,7 @@
 import Item from './item.js'
 import Subcategory from './subcategory.js'
 import Category from './category.js'
+import subcategoriesAdapter from './subcategoriesAdapter.js'
 
 class ItemsAdapter {
     constructor(baseUrl) {
@@ -30,8 +31,6 @@ class ItemsAdapter {
 
     beginItemCreate = e => {
             this.renderNewItemForm()
-            const itemObj = this.prepRequestObj()
-            console.log(itemObj)
     }
 
     renderNewItemForm = () => {
@@ -51,32 +50,32 @@ class ItemsAdapter {
         </div>
         `
         this.addBtn = document.getElementById('add')
-        this.addBtn.addEventListener('click', this.prepRequestObj)
+        this.addBtn.addEventListener('click', this.createItemRequest)
     }
 
-    prepRequestObj() {
+    createItemRequest = () => {
         const inputs = document.querySelectorAll('input')
         const name = inputs[0].value
         const categoryName = inputs[2].value
         const category = Category.findByName(categoryName)
         const subcategory = Subcategory.findByNameAndCategoryId(inputs[3].value, category.id)
         const itemObj = {name: name, subcategory_id: subcategory.id}
-        return itemObj
-    }
+    
+        const configObj = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(itemObj)
+        }
 
-    createItemRequest = () => {
-
-        // const configObj = {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json'
-        //     },
-        //     body: JSON.stringify(itemObj)
-        // }
-        // fetch(this.baseUrl, configObj)
-        // .then(resp = resp.json())
-        // .then(Item.createFromObject)
+        fetch(this.baseUrl, configObj)
+        .then(resp => resp.json())
+        .then( obj => {
+            const sub = Subcategory.findById(obj.subcategory_id)
+            subcategoriesAdapter.renderArrayOfItems(sub.items())
+        })
     }
     
     handleItemDelete = e => {

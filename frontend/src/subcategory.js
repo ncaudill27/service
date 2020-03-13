@@ -13,6 +13,10 @@ export default class Subcategory {
             }
         })
     }
+
+    static findById(id) {
+        return Subcategory.all.find(sc => sc.id == id)
+    }
     
     constructor({id, name, category_id}) {
         this.id = id

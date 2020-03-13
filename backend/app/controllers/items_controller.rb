@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item = Item.create(name: params[:name])
+    item = Item.create(name: params[:name], subcategory_id: params[:subcategory_id])
     render json: item, only: [:id, :name, :subcategory_id]
   end
 
