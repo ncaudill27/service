@@ -44,7 +44,7 @@ export default class Item {
 
         this.cart.innerHTML = `
         <p>
-            ${this.name.slice(0,5)}...(${this.cartCount})
+            (${this.cartCount}) ${this.name}
         </p>
         `
         return this.cart
@@ -54,7 +54,7 @@ export default class Item {
         this.cartCount += 1
         this.cart.innerHTML = `
         <p>
-            ${this.name.slice(0,5)}...(${this.cartCount})
+            (${this.cartCount}) ${this.name}
         </p>
         `
         return this.cart

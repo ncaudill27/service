@@ -24,12 +24,13 @@ header h1 {
 .cart {
     display: none;
     margin: 10px auto 10px auto;
-    width: 100px;
+    width: 200px;
     background-color: #98FB98;
     float: right;
-    padding: 5px;
+    padding-left: 2.5em;
+    text-indent:-2.5em;
     border-radius: 10px;
-    text-align: center;
+    text-align: left;
 }
 
 .menu-item {
