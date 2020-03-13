@@ -41,18 +41,11 @@ class SubcategoriesAdapter {
         if (document.querySelector('.form-card')) {
             const submitBtn = document.getElementById('add')
             submitBtn.addEventListener('click', this.sendCreateRequest)
-
-            // const cancelBtn = document.getElementById('cancel')
-            // cancelBtn.addEventListener('click', Item.getMainState())
         }
     }
 
     sendCreateRequest = () => {
-        const inputs = document.querySelectorAll('input')
-        const name = inputs[0].value
-        const categoryName = inputs[1].value
-        const category = Category.findByName(categoryName)
-        const requestObj = {name: name, category_id: category.id}
+        const requestObj = this.processFormInfo()
         const configObj = {
             method: 'POST',
             headers: {
@@ -69,6 +62,14 @@ class SubcategoriesAdapter {
         })
     }
 
+    processFormInfo() {
+        const inputs = document.querySelectorAll('input')
+        const name = inputs[0].value
+        const categoryName = inputs[1].value
+        const category = Category.findByName(categoryName)
+        return {name: name, category_id: category.id}
+    }
+
     renderNewForm() {
         const main = document.querySelector('main')
         main.innerHTML = `
@@ -78,7 +79,6 @@ class SubcategoriesAdapter {
             <input type='text' name='name'><br>
             <label>Parent Category</label>
             <input type='text' name='category'><br>
-            <input id='cancel' type='submit' value='Cancel'>
             <input id='add' type='submit' value='Add'>
         </div>
         `
