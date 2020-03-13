@@ -92,7 +92,7 @@ class CategoriesAdapter {
                 <input type='text' name='name'>
                 <input type='submit' value='Add'>
             </form>
-        <div>
+        </div>
         `
     }
 

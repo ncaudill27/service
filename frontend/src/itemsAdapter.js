@@ -29,11 +29,44 @@ class ItemsAdapter {
 
     handleItemCreate = e => {
         if (e.target.matches('.add-item')) {
-
+            this.renderNewItemForm()
             console.log('here')
         }
     }
 
+    renderNewItemForm = () => {
+        this.element.innerHTML = `
+        <div class='form-card'>
+            <h4>New Item</h4>
+            <label>Item Name</label>
+            <input type='text' name='name'><br>
+            <label>Item Price</label>
+            <input type='text' name='price'><br>
+            <input id='cancel' type='submit' value='Cancel'>
+            <input id='add' type='submit' value='Add'>
+        </div>
+        `
+        this.addBtn = document.getElementById('add')
+        this.addBtn.addEventListener('click', this.createItemRequest)
+    }
+
+    createItemRequest = () => {
+        const inputs = document.querySelectorAll('input')
+        const name = inputs[0].value
+        const itemObj = {name: name}
+        const configObj = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(itemObj)
+        }
+        fetch(this.baseUrl, configObj)
+        .then(resp = resp.json())
+        .then(Item.createFromObject)
+    }
+    
     handleItemDelete = e => {
         if (e.target.matches('img')) {
             const itemId = e.target.parentNode.dataset.itemId
@@ -64,7 +97,7 @@ class ItemsAdapter {
         .then(resp => resp.json())
         .then(Item.updateItem)
     }
-    
+
 // Functions relevant to adding items to cart.
     handleCartAdd = e => {
         if (this.addToCartTargetCheck(e)) {

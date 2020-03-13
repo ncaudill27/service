@@ -4,6 +4,11 @@ class ItemsController < ApplicationController
     render json: items, only: [:id, :name, :subcategory_id]
   end
 
+  def create
+    item = Item.create(name: params[:name])
+    render json: item, only: [:id, :name, :subcategory_id]
+  end
+
   def update
     item = Item.find_by_id(params[:id])
     item.name = params[:name]

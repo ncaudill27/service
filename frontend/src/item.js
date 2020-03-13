@@ -41,6 +41,11 @@ export default class Item {
         Item.previousState.map(item => main.appendChild(item.element))
     }
 
+    static createFromObject = itemObj => {
+        const item = new Item(itemObj)
+        item.render()
+    }
+
     // static appendAddItemBtn() {
     //     const addBtn = document.createElement('div')
     //     addBtn.setAttribute('class', 'card')
@@ -90,10 +95,6 @@ export default class Item {
 
         this.cancelBtn = document.getElementById('cancel')
         this.cancelBtn.addEventListener('click', Item.getMainState)
-    }
-
-    renderNewForm = () => {
-
     }
 
     submitEdit = e => {
