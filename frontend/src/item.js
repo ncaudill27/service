@@ -11,10 +11,10 @@ export default class Item {
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'card')
 
-        Item.all.push(this)
+
     }
 
-    render() {
+    render = () => {
         this.element.setAttribute('data-item-id', this.id)
         this.element.innerHTML = `
         <img src='/deletebutton.png' alt='Delete button'>
@@ -26,9 +26,41 @@ export default class Item {
             Edit
         </span>
         `
+        this.editBtn = this.element.querySelector('span')
+        this.editBtn.addEventListener('click', this.handleItemEdit)
+
+        Item.all.push(this)
         return this.element
     }
+    
+    handleItemEdit = e => {
+        console.log(e.target.parentNode.dataset.itemId)
+        this.renderEditForm()
+    }
 
+    renderEditForm = () => {
+        this.element.parentNode.innerHTML = `
+        <div class='edit-item'>
+            <h4>Edit Item</h4>
+            <label>Name</label>
+            <input type='text' value='${this.name}'>
+            <label>Price</label>
+            <input type='text'><br>
+            <input id='cancel' type='submit' value='Cancel'>
+            <input id='submit' type='submit' value='Edit'><br>
+        <div>
+        `
+        this.submitBtn = document.getElementById('submit')
+        this.submitBtn.addEventListener('click', this.submitEdit)
+    }
+
+    submitEdit = e => {
+        console.log(e.target)
+    }
+    
+
+
+// Functions relative to cart
     addToCart = ()=> {
         const cart = document.querySelector('.cart')
         cart.style.display = 'block'

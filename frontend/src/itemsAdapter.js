@@ -6,7 +6,7 @@ class ItemsAdapter {
 
         this.element = document.querySelector('main')
         this.element.addEventListener('click', this.handleCartAdd)
-        this.element.addEventListener('click', this.handleDelete)
+        this.element.addEventListener('click', this.handleItemDelete)
     }
 
     
@@ -23,7 +23,7 @@ class ItemsAdapter {
         })
     }
 
-    handleDelete = e => {
+    handleItemDelete = e => {
         if (e.target.matches('img')) {
             const itemId = e.target.parentNode.dataset.itemId
             fetch(`${this.baseUrl}/${itemId}`, {
@@ -41,6 +41,12 @@ class ItemsAdapter {
     deleteItem({item_id}) {
         const item = Item.all.find(i => i.id == item_id)
         item.element.remove()
+    }
+
+    handleItemEdit = e => {
+        if (e.target.matches('div > span')) {
+            console.log(e.target)
+        }
     }
     
 // Functions relevant to adding items to cart.
@@ -63,7 +69,7 @@ class ItemsAdapter {
 
 // Added for readability
     addToCartTargetCheck(e) {
-        return e.target.matches('.card') || e.target.parentNode.matches('.card') && !e.target.matches('img')
+        return e.target.matches('.card') || e.target.parentNode.matches('.card') && !e.target.matches('img') && !e.target.matches('span')
     }
 }
     
