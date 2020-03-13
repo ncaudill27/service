@@ -74,9 +74,15 @@ class CategoriesAdapter {
             },
             body: JSON.stringify(newCategoryObj)
         }
-        fetch(`${this.baseUrl}`, configObj)
+        (async () => {
+        const rawResponse = await fetch(`${this.baseUrl}`, configObj)
+        const content = await rawResponse.json()
+
+        console.log(content)
+         
         .then(resp => resp.json())
         .then(obj => console.log(obj))
+        })()
         // this.renderCategory
     }
 

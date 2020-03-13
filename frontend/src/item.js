@@ -40,7 +40,7 @@ export default class Item {
 
     renderEditForm = () => {
         this.element.parentNode.innerHTML = `
-        <div class='edit-item'>
+        <div class='form-card'>
             <h4>Edit Item</h4>
             <label>Name</label>
             <input type='text' value='${this.name}'>

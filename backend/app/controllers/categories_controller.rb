@@ -15,4 +15,10 @@ class CategoriesController < ApplicationController
     category.destroy
     render json: {category_id: category.id}
   end
+
+  # private
+
+  # def categories_params
+  #   params.require(:category).permit(:name, :id)
+  # end
 end
