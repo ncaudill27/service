@@ -58,15 +58,15 @@ class CategoriesAdapter {
             const addForm = document.getElementById('add-category')
             addForm.addEventListener('submit', e => {
                 e.preventDefault()
-                const name = addForm.querySelector('input')
-                this.createCategory(name.value) // Value for post request
+                const input = addForm.querySelector('input')
+                this.createCategory(input.value) // Value for post request
             })
         }
     }
 
-    createCategory(categoryName) {
+    createCategory = categoryName => {
         const newCategoryObj = {name: categoryName}
-        fetch(`${this.baseUrl}`), {
+        const configObj = {
             method: 'POST',
             header: {
                 'Content-Type': 'application/json',
@@ -74,14 +74,10 @@ class CategoriesAdapter {
             },
             body: JSON.stringify(newCategoryObj)
         }
+        fetch(`${this.baseUrl}`, configObj)
         .then(resp => resp.json())
-        .then(this.renderCategory)
-    }
-
-    formInfo = e => {
-
-        return addForm
-
+        .then(obj => console.log(obj))
+        // this.renderCategory
     }
 
     renderCategoryForm() {
