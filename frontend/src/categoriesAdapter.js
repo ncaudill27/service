@@ -1,4 +1,5 @@
 import Category from './category.js'
+import Item from './item.js'
 import subcategoriesAdapter from './subcategoriesAdapter.js'
 
 class CategoriesAdapter {
@@ -51,6 +52,7 @@ class CategoriesAdapter {
 
     handleAddCategory = e => {
         if (e.target.matches('.add-category')) {
+            Item.saveMainState()
             this.renderCategoryForm()
         }
         // Once form available listen for submit
@@ -60,6 +62,7 @@ class CategoriesAdapter {
                 e.preventDefault()
                 const input = addForm.querySelector('input')
                 this.createCategory(input.value) // Value for post request
+                Item.getMainState()
             })
         }
     }

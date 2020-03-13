@@ -11,6 +11,7 @@ export default class Item {
     static previousState = []
 
     static saveMainState = () => {
+        Item.previousState = []
         let allCards = document.querySelectorAll('.card')
         allCards.forEach(card => {
             let item = Item.findById(card.dataset.itemId)
@@ -22,7 +23,6 @@ export default class Item {
         let main = document.querySelector('main')
         main.innerHTML = ''
         Item.previousState.map( item => main.appendChild(item.element))
-        Item.previousState = []
     }
 
     constructor({id, name, subcategory_id}) {
