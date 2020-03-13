@@ -1,5 +1,5 @@
 import Subcategory from './subcategory.js'
-import Item from './item.js'
+import Category from './category.js'
 
 class SubcategoriesAdapter {
     constructor(baseUrl) {
@@ -9,6 +9,9 @@ class SubcategoriesAdapter {
 
         this.element.addEventListener('click', this.handleSubmenuSelection)
         this.element.addEventListener('click', this.destroySubcategory)
+
+        this.addBtn = document.querySelector('.add-subcategory')
+        this.addBtn.addEventListener('click', this.handleNewSubcategory)
     }
 
     
@@ -30,6 +33,55 @@ class SubcategoriesAdapter {
         catDiv.style.display = 'none'
 
         catDiv.appendChild(subDiv)
+        return subcat
+    }
+
+    handleNewSubcategory = () => {
+        this.renderNewForm()
+        if (document.querySelector('.form-card')) {
+            const submitBtn = document.getElementById('add')
+            submitBtn.addEventListener('click', this.sendCreateRequest)
+
+            // const cancelBtn = document.getElementById('cancel')
+            // cancelBtn.addEventListener('click', Item.getMainState())
+        }
+    }
+
+    sendCreateRequest = () => {
+        const inputs = document.querySelectorAll('input')
+        const name = inputs[0].value
+        const categoryName = inputs[1].value
+        const category = Category.findByName(categoryName)
+        const requestObj = {name: name, category_id: category.id}
+        const configObj = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(requestObj)
+        }
+        fetch(this.baseUrl, configObj)
+        .then(resp => resp.json())
+        .then(obj => {
+            const subcategory = this.renderSingleCategory(obj)
+            subcategory.parentCategoryElement.style.display = 'block'
+        })
+    }
+
+    renderNewForm() {
+        const main = document.querySelector('main')
+        main.innerHTML = `
+        <div class='form-card'>
+            <h4>New Subcategory</h4>
+            <label>Name</label>
+            <input type='text' name='name'><br>
+            <label>Parent Category</label>
+            <input type='text' name='category'><br>
+            <input id='cancel' type='submit' value='Cancel'>
+            <input id='add' type='submit' value='Add'>
+        </div>
+        `
     }
 
     destroySubcategory = e => {
