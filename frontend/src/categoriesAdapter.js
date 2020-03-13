@@ -9,7 +9,7 @@ class CategoriesAdapter {
         this.element = document.querySelector('.sidebar')
 
         this.element.addEventListener('click', this.toggleSubmenu)
-        this.element.addEventListener('click', this.destroyCategory)
+        // this.element.addEventListener('click', this.destroyCategory)
         this.element.addEventListener('click', this.handleAddCategory)
     }
 

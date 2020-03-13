@@ -20,9 +20,9 @@ export default class Category {
         this.element.innerHTML = `
         <h2 data-category-id='${this.id}'>
             ${this.name}
-            <img src='/deletebutton.png' alt='Delete button'>
         </h2>
-            <img class='edit' src='/fountainpen.png' alt='Edit button'>
+        <img class='delete' src='/deletebutton.png' alt='Delete button'>
+        <img class='edit' src='/fountainpen.png' alt='Edit button'>
         `
         // Node to attach Subcategories to
         const submenu = document.createElement('ul')
