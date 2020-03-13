@@ -10,7 +10,7 @@ export default class Subcategory {
         this.category_id = category_id
 
         this.parentCategoryElement = document.getElementById(`submenu-${category_id}`)
-        this.element = document.createElement('div')
+        this.element = document.createElement('li')
         this.element.setAttribute('class', 'submenu-item')
 
         Subcategory.all.push(this)

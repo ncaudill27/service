@@ -1,5 +1,9 @@
+body {
+    background-color: honeydew;
+}
+
 header {
-    background-color:#99ebff;
+    background-color:#FFDAB9;
     margin: 0 auto;
     height: 50px;
     text-align: center;
@@ -12,13 +16,16 @@ header h1 {
   
 .sidebar {
     margin: 0;
-    padding: 0;
     width: 200px;
     display: block;
-    background-color:#99ebff;
+    background-color:#FFDAB9;
     height: 100%;
     overflow: auto;
     float: left;
+}
+
+.sidebar h2 {
+    padding-left: 15px;
 }
 
 .cart {
@@ -27,18 +34,16 @@ header h1 {
     width: 200px;
     background-color: #98FB98;
     float: right;
-    padding-left: 2.5em;
-    text-indent:-2.5em;
-    border-radius: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 5px;
     text-align: left;
 }
 
-.menu-item {
-    display: inline;
-}
-
 .submenu {
-    background-color: #6495ED;
+    list-style-type: none;
+    background-color: #FFEFD5;
+    font-weight: lighter;
 }
 
 img {
@@ -48,8 +53,11 @@ img {
     float: right;
 }
 
+img:hover {
+    cursor: pointer;
+}
+
 .menu-item:hover {
-    background-color: grey;
     cursor: pointer;
 }
 
@@ -59,18 +67,29 @@ main {
     grid-template-rows: auto;
     grid-gap: 20px;
     padding-top: 10px;
-    padding-bottom: 30px;
-    margin-left: 220px;
+    margin-left: 230px;
 }
   
 .card {
+    margin: auto;
+    position: relative;
     background-color: #eeeeee;
     height: 100px;
     width: 120px;
-    box-shadow: 1px 1px grey;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: center;
+}
+
+.card span {
+    padding: 2px;
+    position: absolute;
+    bottom: 1px;
+    right: 5px;
+}
+
+.card span:hover {
+    cursor: pointer;
 }
 
 .form-card {

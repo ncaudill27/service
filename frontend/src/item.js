@@ -22,6 +22,9 @@ export default class Item {
         <h4>
             ${this.name}
         </h4>
+        <span>
+            Edit
+        </span>
         `
         return this.element
     }

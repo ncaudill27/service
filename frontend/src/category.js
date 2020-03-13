@@ -20,7 +20,7 @@ export default class Category {
         </h2>
         `
         // Node to attach Subcategories to
-        const submenu = document.createElement('div')
+        const submenu = document.createElement('ul')
         submenu.setAttribute('id', `submenu-${this.id}`)
         submenu.setAttribute('class', 'submenu')
         this.element.appendChild(submenu)
