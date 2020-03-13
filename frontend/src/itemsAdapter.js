@@ -1,4 +1,6 @@
 import Item from './item.js'
+import Subcategory from './subcategory.js'
+import Category from './category.js'
 
 class ItemsAdapter {
     constructor(baseUrl) {
@@ -7,10 +9,9 @@ class ItemsAdapter {
         this.element = document.querySelector('main')
         this.element.addEventListener('click', this.handleCartAdd)
         this.element.addEventListener('click', this.handleItemDelete)
-        this.element.addEventListener('click', this.handleItemCreate)
 
         this.addBtn = document.querySelector('.add-item')
-        this.addBtn.addEventListener('click', this.handleItemCreate)
+        this.addBtn.addEventListener('click', this.beginItemCreate)
     }
 
     
@@ -27,11 +28,10 @@ class ItemsAdapter {
         })
     }
 
-    handleItemCreate = e => {
-        if (e.target.matches('.add-item')) {
+    beginItemCreate = e => {
             this.renderNewItemForm()
-            console.log('here')
-        }
+            const itemObj = this.prepRequestObj()
+            console.log(itemObj)
     }
 
     renderNewItemForm = () => {
@@ -42,29 +42,41 @@ class ItemsAdapter {
             <input type='text' name='name'><br>
             <label>Item Price</label>
             <input type='text' name='price'><br>
+            <label>Category Name</label>
+            <input type='text' name='category'><br>
+            <label>Subcategory Name</label>
+            <input type='text' name='subcategory'><br>
             <input id='cancel' type='submit' value='Cancel'>
             <input id='add' type='submit' value='Add'>
         </div>
         `
         this.addBtn = document.getElementById('add')
-        this.addBtn.addEventListener('click', this.createItemRequest)
+        this.addBtn.addEventListener('click', this.prepRequestObj)
+    }
+
+    prepRequestObj() {
+        const inputs = document.querySelectorAll('input')
+        const name = inputs[0].value
+        const categoryName = inputs[2].value
+        const category = Category.findByName(categoryName)
+        const subcategory = Subcategory.findByNameAndCategoryId(inputs[3].value, category.id)
+        const itemObj = {name: name, subcategory_id: subcategory.id}
+        return itemObj
     }
 
     createItemRequest = () => {
-        const inputs = document.querySelectorAll('input')
-        const name = inputs[0].value
-        const itemObj = {name: name}
-        const configObj = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(itemObj)
-        }
-        fetch(this.baseUrl, configObj)
-        .then(resp = resp.json())
-        .then(Item.createFromObject)
+
+        // const configObj = {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json'
+        //     },
+        //     body: JSON.stringify(itemObj)
+        // }
+        // fetch(this.baseUrl, configObj)
+        // .then(resp = resp.json())
+        // .then(Item.createFromObject)
     }
     
     handleItemDelete = e => {

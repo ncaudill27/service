@@ -12,6 +12,10 @@ export default class Category {
         Category.all.push(this)
     }
 
+    static findByName(name) {
+        return Category.all.find(cat => cat.name == name)
+    }
+
     render() {
         this.element.innerHTML = `
         <h2 data-category-id='${this.id}'>

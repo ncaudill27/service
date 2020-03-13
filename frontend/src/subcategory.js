@@ -3,6 +3,16 @@ import Item from './item.js'
 export default class Subcategory {
 
     static all = []
+
+    static findByNameAndCategoryId(name, id) {
+        return Subcategory.all.find(sub => {
+            try {
+                sub.id == id
+            } finally {
+                return sub.name == name
+            }
+        })
+    }
     
     constructor({id, name, category_id}) {
         this.id = id
