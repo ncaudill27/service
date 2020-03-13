@@ -37,6 +37,7 @@ export default class Item {
     
     handleItemEdit = e => {
         console.log(e.target.parentNode.dataset.itemId)
+        this.saveMainState()
         this.renderEditForm()
     }
 
@@ -54,13 +55,25 @@ export default class Item {
         `
         this.submitBtn = document.getElementById('submit')
         this.submitBtn.addEventListener('click', this.submitEdit)
+
+        this.cancelBtn = document.getElementById('cancel')
+        this.cancelBtn.addEventListener('click', this.getMainState)
     }
 
     submitEdit = e => {
         const reqObj = {name: this.name, id: this.id, subcategory_id: this.subcategory_id}
-        console.log(reqObj)
+        itemsAdapter.patchItem(reqObj)
     }
     
+    saveMainState = () => {
+        let main = document.querySelector('main')
+        this.previousState = main.innerHTML
+    }
+
+    getMainState = () => {
+        let main = document.querySelector('main')
+        main.innerHTML = this.previousState
+    }
 
 
 // Functions relative to cart

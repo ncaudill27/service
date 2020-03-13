@@ -49,7 +49,7 @@ class ItemsAdapter {
             header: {'Content-Type': 'application/json', 'Accept': 'application/json'},
             body: JSON.stringify(itemObj)
         }
-        fetch(`${this.baseUrl}/${itemObj.id}`)
+        fetch(`${this.baseUrl}/${itemObj.id}`, configObj)
         .then(resp => resp.json())
         .then(obj => console.log(obj))
     }
