@@ -30,24 +30,16 @@ class CategoriesAdapter {
         this.element.appendChild(catDiv)
     }
 
-    destroyCategory = e => {
-        if (e.target.matches('.menu-item > h2 > img')) {
-            const categoryId = e.target.parentNode.dataset.categoryId
-            fetch(`${this.baseUrl}/${categoryId}`, {
-                method: 'DELETE',
-                header: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            })
-            .then(resp => resp.json())
-            .then(this.deleteCategory)
-        }
-    }
-
-    deleteCategory({category_id}) {
-        const category = Category.all.find(cat => cat.id == category_id)
-        category.element.remove()
+    destroyCategory = categoryId => {
+        fetch(`${this.baseUrl}/${categoryId}`, {
+            method: 'DELETE',
+            header: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        .then(resp => resp.json())
+        .then(Category.deleteCategory)
     }
 
     handleAddCategory = e => {

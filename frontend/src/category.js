@@ -1,6 +1,13 @@
+import categoriesAdapter from './categoriesAdapter.js'
+
 export default class Category {
 
     static all = []
+    
+    static deleteCategory({category_id}) {
+        const category = Category.all.find(cat => cat.id == category_id)
+        category.element.remove()
+    }
     
     constructor({id, name}) {
         this.id = id
@@ -8,6 +15,7 @@ export default class Category {
 
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'menu-item')
+        this.element.setAttribute('data-category-id', this.id)
 
         Category.all.push(this)
     }
@@ -18,11 +26,11 @@ export default class Category {
 
     render() {
         this.element.innerHTML = `
-        <h2 data-category-id='${this.id}'>
+        <h2>
             ${this.name}
         </h2>
-        <img class='delete' src='/deletebutton.png' alt='Delete button'>
-        <img class='edit' src='/fountainpen.png' alt='Edit button'>
+        <img class='delete' id='delete-category-${this.id}' src='/deletebutton.png' alt='Delete button'>
+        <img class='edit' id='edit-category-${this.id}' src='/fountainpen.png' alt='Edit button'>
         `
         // Node to attach Subcategories to
         const submenu = document.createElement('ul')
@@ -30,6 +38,13 @@ export default class Category {
         submenu.setAttribute('class', 'submenu')
         this.element.appendChild(submenu)
 
+        const deleteBtn = this.element.querySelector('img.delete')
+        deleteBtn.addEventListener('click', this.handleDelete)
+
         return this.element
+    }
+
+    handleDelete = () => {
+        categoriesAdapter.destroyCategory(this.id)
     }
 }
