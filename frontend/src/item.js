@@ -1,3 +1,5 @@
+import itemsAdapter from "./itemsAdapter.js"
+
 export default class Item {
 
     static all = []
@@ -43,7 +45,7 @@ export default class Item {
         <div class='form-card'>
             <h4>Edit Item</h4>
             <label>Name</label>
-            <input type='text' value='${this.name}'>
+            <input type='text' value='${this.name}'><br>
             <label>Price</label>
             <input type='text'><br>
             <input id='cancel' type='submit' value='Cancel'>
@@ -55,7 +57,8 @@ export default class Item {
     }
 
     submitEdit = e => {
-        console.log(e.target)
+        const reqObj = {name: this.name, id: this.id, subcategory_id: this.subcategory_id}
+        console.log(reqObj)
     }
     
 

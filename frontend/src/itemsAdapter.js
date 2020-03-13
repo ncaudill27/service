@@ -43,10 +43,15 @@ class ItemsAdapter {
         item.element.remove()
     }
 
-    handleItemEdit = e => {
-        if (e.target.matches('div > span')) {
-            console.log(e.target)
+    patchItem = itemObj => {
+        const configObj = {
+            method: 'PATCH',
+            header: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            body: JSON.stringify(itemObj)
         }
+        fetch(`${this.baseUrl}/${itemObj.id}`)
+        .then(resp => resp.json())
+        .then(obj => console.log(obj))
     }
     
 // Functions relevant to adding items to cart.
