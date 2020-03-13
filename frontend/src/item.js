@@ -3,7 +3,28 @@ import itemsAdapter from "./itemsAdapter.js"
 export default class Item {
 
     static all = []
-    
+
+    static findById(itemId) {
+        return Item.all.find(item => item.id == itemId)
+    }
+
+    static previousState = []
+
+    static saveMainState = () => {
+        let allCards = document.querySelectorAll('.card')
+        allCards.forEach(card => {
+            let item = Item.findById(card.dataset.itemId)
+            Item.previousState.push(item)
+        })
+    }
+
+    static getMainState = () => {
+        let main = document.querySelector('main')
+        main.innerHTML = ''
+        Item.previousState.map( item => main.appendChild(item.element))
+        Item.previousState = []
+    }
+
     constructor({id, name, subcategory_id}) {
         this.id = id
         this.name = name
@@ -12,8 +33,6 @@ export default class Item {
 
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'card')
-
-
     }
 
     render = () => {
@@ -37,7 +56,7 @@ export default class Item {
     
     handleItemEdit = e => {
         console.log(e.target.parentNode.dataset.itemId)
-        this.saveMainState()
+        Item.saveMainState()
         this.renderEditForm()
     }
 
@@ -57,24 +76,13 @@ export default class Item {
         this.submitBtn.addEventListener('click', this.submitEdit)
 
         this.cancelBtn = document.getElementById('cancel')
-        this.cancelBtn.addEventListener('click', this.getMainState)
+        this.cancelBtn.addEventListener('click', Item.getMainState)
     }
 
     submitEdit = e => {
         const reqObj = {name: this.name, id: this.id, subcategory_id: this.subcategory_id}
         itemsAdapter.patchItem(reqObj)
     }
-    
-    saveMainState = () => {
-        let main = document.querySelector('main')
-        this.previousState = main.innerHTML
-    }
-
-    getMainState = () => {
-        let main = document.querySelector('main')
-        main.innerHTML = this.previousState
-    }
-
 
 // Functions relative to cart
     addToCart = ()=> {
