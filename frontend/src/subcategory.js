@@ -1,4 +1,5 @@
 import Item from './item.js'
+import subcategoriesAdapter from './subcategoriesAdapter.js'
 
 export default class Subcategory {
 
@@ -16,6 +17,11 @@ export default class Subcategory {
 
     static findById(id) {
         return Subcategory.all.find(sc => sc.id == id)
+    }
+    
+    static deleteSubcategory({subcategory_id}) {
+        const subcategory = Subcategory.findById(subcategory_id)
+        subcategory.element.remove()
     }
     
     constructor({id, name, category_id}) {
@@ -38,10 +44,13 @@ export default class Subcategory {
         this.element.innerHTML = `
         <h2 data-subcategory-id='${this.id}'>
             ${this.name}
-            <img src='/deletebutton.png' alt='Delete button'>
-            <img class='edit' src='/fountainpen.png' alt='Edit button'>
         </h2>
+        <img class='delete' src='/deletebutton.png' alt='Delete button'>
+        <img class='edit' src='/fountainpen.png' alt='Edit button'>
         `
+
+        this.deleteBtn = this.element.querySelector('img.delete')
+        this.deleteBtn.addEventListener('click', ()=>subcategoriesAdapter.destroySubcategory(this.id))
         return this.element
     }
 }

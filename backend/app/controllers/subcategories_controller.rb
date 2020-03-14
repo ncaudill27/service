@@ -10,6 +10,13 @@ class SubcategoriesController < ApplicationController
     render json: subcategory, only: [:name, :id, :category_id]
   end
 
+  def update
+    subcategory = Subcategory.find_by_id(params[:id])
+    subcategory.name = params[:name]
+    subcategory.category_id = params[:category_id]
+    render json: subcategory, only: [:name, :id, :category_id]
+  end
+
   def destroy
     subcategory = Subcategory.find_by_id(params[:id])
     subcategory.destroy

@@ -8,7 +8,6 @@ class SubcategoriesAdapter {
         this.element = document.querySelector('.sidebar')
 
         this.element.addEventListener('click', this.handleSubmenuSelection)
-        this.element.addEventListener('click', this.destroySubcategory)
 
         this.addBtn = document.querySelector('.add-subcategory')
         this.addBtn.addEventListener('click', this.handleNewSubcategory)
@@ -84,24 +83,16 @@ class SubcategoriesAdapter {
         `
     }
 
-    destroySubcategory = e => {
-        if (e.target.matches('.submenu-item > h2 > img')) {
-            const subcategoryId = e.target.parentNode.dataset.subcategoryId
-            fetch(`${this.baseUrl}/${subcategoryId}`, {
-                method: 'DELETE',
-                header: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            })
-            .then(resp => resp.json())
-            .then(this.deleteSubcategory)
-        }
-    }
-
-    deleteSubcategory({subcategory_id}) {
-        const subcategory = Subcategory.all.find(sub => sub.id == subcategory_id)
-        subcategory.element.remove()
+    destroySubcategory = subcategoryId => {
+        fetch(`${this.baseUrl}/${subcategoryId}`, {
+            method: 'DELETE',
+            header: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        .then(resp => resp.json())
+        .then(Subcategory.deleteSubcategory)
     }
 
     handleSubmenuSelection = e => {
