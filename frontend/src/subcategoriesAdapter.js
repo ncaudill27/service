@@ -95,6 +95,20 @@ class SubcategoriesAdapter {
         .then(Subcategory.deleteSubcategory)
     }
 
+    patchSubcategory = patchObj => {
+        const configObj = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(patchObj)
+        }
+        fetch(`${this.baseUrl}/${patchObj.id}`, configObj)
+        .then(resp => resp.json())
+        .then(Subcategory.patch)
+    }
+
     handleSubmenuSelection = e => {
         if (e.target.matches('.submenu-item > h2')) {
             const subId = e.target.dataset.subcategoryId

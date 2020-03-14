@@ -8,6 +8,10 @@ export default class Category {
         return Category.all.find(cat => cat.id == id)
     }
 
+    static nameFromId(id) {
+        return Category.findById(id).name
+    }
+
     static deleteCategory({category_id}) {
         const category = Category.findById(category_id)
         category.element.remove()
