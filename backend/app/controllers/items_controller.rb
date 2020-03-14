@@ -20,4 +20,10 @@ class ItemsController < ApplicationController
     item = Item.find_by_id(params[:id])
     render json: {item_id: item.id}
   end
+
+  private
+
+  def render_return_json
+    render json: item, only: [:id, :name, :subcategory_id]
+  end
 end
