@@ -8,7 +8,7 @@ export default class Category {
         const category = Category.all.find(cat => cat.id == category_id)
         category.element.remove()
     }
-    
+
     constructor({id, name}) {
         this.id = id
         this.name = name
@@ -41,10 +41,34 @@ export default class Category {
         const deleteBtn = this.element.querySelector('img.delete')
         deleteBtn.addEventListener('click', this.handleDelete)
 
+        const editBtn = this.element.querySelector('img.edit')
+        editBtn.addEventListener('click', this.handleEdit)
         return this.element
     }
 
     handleDelete = () => {
         categoriesAdapter.destroyCategory(this.id)
+    }
+
+    handleEdit = () => {
+        const main = document.querySelector('main')
+        main.innerHTML= `
+        <div class='form-card'>
+            <h4>Edit Category</h4>
+            <label>Name</label>
+            <input type='text' value='${this.name}'>
+            <input id='edit-category' type='submit' value='Edit'>
+        </div>
+        `
+
+        const submitPatchBtn = document.getElementById('edit-category')
+        submitPatchBtn.addEventListener('click', () => {
+            const requestObj = this.sanitizeCategoryObj(this)
+            console.log(requestObj)
+        })
+    }
+
+    sanitizeCategoryObj({id, name}) {
+        return {id: id, name: name}
     }
 }
