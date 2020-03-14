@@ -73,13 +73,32 @@ img:hover {
 .cart {
     display: none;
     margin: 10px auto 10px auto;
-    width: 200px;
+    width: 230px;
     background-color: #98FB98;
     float: right;
-    padding-right: 15px;
+    padding-right: 5px;
     padding-left: 15px;
     border-radius: 5px;
     text-align: left;
+}
+
+.cart-item {
+    position: relative;
+}
+
+.cart-item p {
+    margin-left: 25px;
+    margin-right: 40px;
+}
+
+.cart-item p:first-of-type {
+    text-indent: -22px;
+}
+
+.cart-item img {
+    position: absolute;
+    right: 0;
+    top: 1px;
 }
 
 main {

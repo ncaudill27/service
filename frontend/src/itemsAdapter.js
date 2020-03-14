@@ -94,7 +94,7 @@ class ItemsAdapter {
     }
     
     deleteItem({item_id}) {
-        const item = Item.all.find(i => i.id == item_id)
+        const item = Item.findById(item_id)
         item.element.remove()
     }
 
@@ -113,7 +113,7 @@ class ItemsAdapter {
     handleCartAdd = e => {
         if (this.addToCartTargetCheck(e)) {
             const itemId = this.setDataSetId(e)
-            const item = Item.all.find(item => item.id == itemId)
+            const item = Item.findById(itemId)
             item.addToCart()
         }
     }
@@ -129,7 +129,7 @@ class ItemsAdapter {
 
 // Added for readability
     addToCartTargetCheck(e) {
-        return e.target.matches('.card') || e.target.parentNode.matches('.card') && !e.target.matches('img') && !e.target.matches('span')
+        return e.target.matches('.card') || e.target.parentNode.matches('.card') && !e.target.matches('img')
     }
 }
     

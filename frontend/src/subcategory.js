@@ -59,8 +59,8 @@ export default class Subcategory {
         <h2 data-subcategory-id='${this.id}'>
             ${this.name}
         </h2>
-        <img class='delete' src='/frontend/deletebutton.png' alt='Delete button'>
-        <img class='edit' src='/frontend/fountainpen.png' alt='Edit button'>
+        <img class='delete' src='/deletebutton.png' alt='Delete button'>
+        <img class='edit' src='/fountainpen.png' alt='Edit button'>
         `
 
         this.deleteBtn = this.element.querySelector('img.delete')
