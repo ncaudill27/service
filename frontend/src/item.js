@@ -57,13 +57,13 @@ export default class Item {
     render = () => {
         this.element.setAttribute('data-item-id', this.id)
         this.element.innerHTML = `
-        <img src='/deletebutton.png' alt='Delete button'>
+        <img src='/frontend/deletebutton.png' alt='Delete button'>
         <br>
         <h4>
             ${this.name}
         </h4>
         <span>
-            <img src='/fountainpen.png' alt='Edit button'>
+            <img src='/frontend/fountainpen.png' alt='Edit button'>
         </span>
         `
         this.editBtn = this.element.querySelector('span')

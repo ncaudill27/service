@@ -43,8 +43,8 @@ export default class Category {
         <h2>
             ${this.name}
         </h2>
-        <img class='delete' id='delete-category-${this.id}' src='/deletebutton.png' alt='Delete button'>
-        <img class='edit' id='edit-category-${this.id}' src='/fountainpen.png' alt='Edit button'>
+        <img class='delete' id='delete-category-${this.id}' src='/frontend/deletebutton.png' alt='Delete button'>
+        <img class='edit' id='edit-category-${this.id}' src='/frontend/fountainpen.png' alt='Edit button'>
         `
         // Node to attach Subcategories to
         const submenu = document.createElement('ul')
