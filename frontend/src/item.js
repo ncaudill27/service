@@ -6,7 +6,7 @@ export default class Item {
         this.id = id
         this.name = name
         this.subcategory_id = subcategory_id
-        this.cartCount = 0
+        this.cartItemCount = 0
 
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'card')
@@ -111,35 +111,44 @@ export default class Item {
         const cart = document.querySelector('.cart')
         cart.style.display = 'block'
         
-        if (this.cart) {
+        if (this.cartItem) {
             return this.incrementCartItem()
         }
-        this.cart = this.createCartItem()
-        cart.appendChild(this.cart)
+        this.cartItem = this.createCartItem()
+        cart.appendChild(this.cartItem)
     }
 
     createCartItem() {
-        this.cart = document.createElement('div')
-        this.cart.setAttribute('class', 'cart-item')
-        this.cartCount += 1
+        this.cartItem = document.createElement('div')
+        this.cartItem.setAttribute('class', 'cart-item')
+        this.cartItemCount += 1
 
-        this.cart.innerHTML = `
+        this.cartItem.innerHTML = this.renderCartItem()
+        this.decrementBtn = this.cartItem.querySelector('img.decrement')
+        this.decrementBtn.addEventListener('click', this.decrementCartItem)
+
+        return this.cartItem
+    }
+
+    incrementCartItem() {
+        this.cartItemCount += 1
+        this.cartItem.innerHTML = this.renderCartItem()
+    }
+
+    decrementCartItem = () => {
+        console.log(this.cartItem)
+        // this.cartItemCount -= 1
+        // this.cartItem.innerHTML = this.renderCartItem()
+    }
+
+    renderCartItem() {
+        const item = `
         <p>
-            (${this.cartCount}) ${this.name}
+            (${this.cartItemCount}) ${this.name}
         </p>
         <img class='decrement' src='/downarrow.png' alt='Decrement item'>
         <img class='delete' src='/deletebutton.png' alt='Delete button'>
         `
-        return this.cart
-    }
-
-    incrementCartItem() {
-        this.cartCount += 1
-        this.cart.innerHTML = `
-        <p>
-            (${this.cartCount}) ${this.name}
-        </p>
-        `
-        return this.cart
+        return item
     }
 }
