@@ -105,8 +105,8 @@ main {
 .card span {
     padding: 2px;
     position: absolute;
-    bottom: 1px;
-    right: 5px;
+    bottom: 20px;
+    right: 0;
 }
 
 .card span:hover {

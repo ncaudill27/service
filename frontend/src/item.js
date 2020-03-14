@@ -63,7 +63,7 @@ export default class Item {
             ${this.name}
         </h4>
         <span>
-            Edit
+            <img src='/fountainpen.png' alt='Edit button'>
         </span>
         `
         this.editBtn = this.element.querySelector('span')
