@@ -126,8 +126,9 @@ export default class Item {
         this.cart.innerHTML = `
         <p>
             (${this.cartCount}) ${this.name}
-            <img src='/deletebutton.png' alt='Delete button'>
-            </p>
+        </p>
+        <img class='decrement' src='/downarrow.png' alt='Decrement item'>
+        <img class='delete' src='/deletebutton.png' alt='Delete button'>
         `
         return this.cart
     }

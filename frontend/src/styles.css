@@ -101,6 +101,14 @@ img:hover {
     top: 1px;
 }
 
+.cart-item img.decrement {
+    height: 36px;
+    width: 36px;
+    position: absolute;
+    top: -7px;
+    right: 13px;
+}
+
 main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
