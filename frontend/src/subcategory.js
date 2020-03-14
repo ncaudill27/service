@@ -21,8 +21,21 @@ export default class Subcategory {
 
     static patch(obj) {
         const subcategory = Subcategory.findById(obj.id)
-        const h2 = subcategory.element.querySelector('h2')
-        h2.innerText = obj.name
+
+        if (obj.category_id != subcategory.category_id) {
+            // Change focus of dropdown menu while we still have original parent category
+            subcategory.element.parentNode.style.display = 'none'
+            // Update new category
+            subcategory.category_id = obj.category_id
+            subcategory.parentCategoryElement = document.getElementById(`submenu-${obj.category_id}`)
+        }
+        const categoryDiv = subcategory.parentCategoryElement
+        subcategory.element.parentNode.style.display = 'block'
+        
+        subcategory.name = obj.name
+
+        const patchedLi = subcategory.render()
+        categoryDiv.appendChild(patchedLi)
     }
     
     constructor({id, name, category_id}) {
@@ -51,15 +64,15 @@ export default class Subcategory {
         `
 
         this.deleteBtn = this.element.querySelector('img.delete')
-        this.deleteBtn.addEventListener('click', ()=>subcategoriesAdapter.destroySubcategory(this.id))
+        this.deleteBtn.addEventListener('click', ()=> subcategoriesAdapter.destroySubcategory(this.id))
 
         this.editBtn = this.element.querySelector('img.edit')
-        this.editBtn.addEventListener('click', ()=> this.handlePatchEvent(this))
+        this.editBtn.addEventListener('click', this.handlePatchEvent)
 
         return this.element
     }
 
-    handlePatchEvent(obj) {
+    handlePatchEvent= () => {
         const main = document.querySelector('main')
         main.innerHTML = `
         <div class='form-card'>

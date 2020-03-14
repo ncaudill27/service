@@ -105,7 +105,7 @@ export default class Item {
         Item.getMainState()
     }
 
-// Functions relative to cart
+// Cart related functions
     addToCart = ()=> {
         const cart = document.querySelector('.cart')
         cart.style.display = 'block'
