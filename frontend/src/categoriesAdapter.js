@@ -88,6 +88,20 @@ class CategoriesAdapter {
         `
     }
 
+    patchCategory = patchObj => {
+        const configObj = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(patchObj)
+        }
+        fetch(`${this.baseUrl}/${patchObj.id}`, configObj)
+        .then(resp => resp.json())
+        .then(Category.patchCategory)
+    }
+
     toggleSubmenu(e) {
         if (e.target.matches('.menu-item > h2')) {
             const subMenu = e.target.parentNode.lastChild

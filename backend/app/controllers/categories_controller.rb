@@ -9,6 +9,13 @@ class CategoriesController < ApplicationController
     render json: category, only: [:name, :id]
   end
 
+  def update
+    category = Category.find_by_id(params[:id])
+    category.name = params[:name]
+    category.save
+    render json: category, only: [:name, :id]
+  end
+
   def destroy
     category = Category.find_by_id(params[:id])
     category.destroy

@@ -4,9 +4,19 @@ export default class Category {
 
     static all = []
     
+    static findById(id) {
+        return Category.all.find(cat => cat.id == id)
+    }
+
     static deleteCategory({category_id}) {
-        const category = Category.all.find(cat => cat.id == category_id)
+        const category = Category.findById(category_id)
         category.element.remove()
+    }
+
+    static patchCategory(obj) {
+        const category = Category.findById(obj.id)
+        const h2 = category.element.querySelector('h2')
+        h2.innerText = obj.name
     }
 
     constructor({id, name}) {
@@ -63,12 +73,14 @@ export default class Category {
 
         const submitPatchBtn = document.getElementById('edit-category')
         submitPatchBtn.addEventListener('click', () => {
-            const requestObj = this.sanitizeCategoryObj(this)
-            console.log(requestObj)
+            const requestObj = this.prepPatchRequestObj(this)
+            categoriesAdapter.patchCategory(requestObj)
         })
     }
 
-    sanitizeCategoryObj({id, name}) {
-        return {id: id, name: name}
+    prepPatchRequestObj({id, name}) {
+        const input = document.querySelector('input')
+        const newName = input.value
+        return {id: id, name: newName}
     }
 }
