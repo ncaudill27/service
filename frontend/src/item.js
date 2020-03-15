@@ -187,7 +187,7 @@ export default class Item {
         <p>
             (${this.cartItemCount}) ${this.name}
         </p>
-        <img class='decrement' src='/downarrow.png' alt='Decrement item'>
+        <img class='decrement' src='/minus.png' alt='Decrement item'>
         <img class='delete' src='/deletebutton.png' alt='Delete button'>
         `
         return item

@@ -98,15 +98,15 @@ img:hover {
 .cart-item img {
     position: absolute;
     right: 0;
-    top: 1px;
+    top: 1.5px;
 }
 
 .cart-item img.decrement {
-    height: 36px;
-    width: 36px;
+    height: 15px;
+    width: 10px;
     position: absolute;
-    top: -7px;
-    right: 13px;
+    top: 2px;
+    right: 20px;
 }
 
 main {
