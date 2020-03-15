@@ -4,16 +4,7 @@ import itemsAdapter from './itemsAdapter.js'
 
 export default class Item {
 
-    constructor({id, name, subcategory_id}) {
-        this.id = id
-        this.name = name
-        this.subcategory_id = subcategory_id
-        this.cartItemCount = 0
-
-        this.element = document.createElement('div')
-        this.element.setAttribute('class', 'card')
-    }
-
+    
     static all = []
 
     static findById(itemId) {
@@ -32,18 +23,16 @@ export default class Item {
 
         item.name = name
 
-        if (item.subcategory_id !== subcategory.id) {
-            subcategory.element.parentNode.style.display = 'none'
-            item.subcategory_id = subcategory_id
+        if (item.subcategory_id != subcategory.id) {
+            subcategory.toggleMenu()
             // TODO Find out why this isn't opening parent ul 
-            // ! If 'old' submenu is open when subcat is editted this works.
-            // ! But old one does not close.
+            item.subcategory_id = subcategory_id
             subcategory = Subcategory.findById(subcategory_id)
+            subcategory.toggleMenu()
         }
         item.render()
         
         subcategoriesAdapter.renderArrayOfItems(subcategory.items())
-        subcategory.element.parentNode.style.display = 'block'
     }
 
     static previousState = []
@@ -67,6 +56,17 @@ export default class Item {
         const item = new Item(itemObj)
         item.render()
     }
+    
+    constructor({id, name, subcategory_id}) {
+        this.id = id
+        this.name = name
+        this.subcategory_id = subcategory_id
+        this.cartItemCount = 0
+
+        this.element = document.createElement('div')
+        this.element.setAttribute('class', 'card')
+    }
+
 
 // ? Save funtionality for manager use?
     // static appendAddItemBtn() {
@@ -130,7 +130,7 @@ export default class Item {
 
         const reqObj = {name: name, id: this.id, subcategory_id: subcategory.id}
         itemsAdapter.patchItem(reqObj)
-        Item.getMainState()
+        // Item.getMainState()
     }
 
 // Cart related functions

@@ -24,13 +24,10 @@ class ItemsAdapter {
     }
 
     renderItems(items) {
-        items.forEach(item => {
-            let i = new Item(item)
-            i.render()
-        })
+        items.forEach(Item.createFromObject)
     }
 
-    beginItemCreate = e => {
+    beginItemCreate = () => {
             this.renderNewItemForm()
     }
 
