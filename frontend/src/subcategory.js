@@ -25,20 +25,26 @@ export default class Subcategory {
 
     static renderPatchResponse(obj) {
         const subcategory = Subcategory.findById(obj.id)
+
+        subcategory.name = obj.name
         
         if (obj.category_id != subcategory.category_id) {
+            subcategory.element.parentNode.style.display = 'none' // Close 'old' submenu
+
+            // Set new parent submenu
             subcategory.category_id = obj.category_id
             subcategory.parentCategoryUl = document.getElementById(`submenu-${obj.category_id}`)
+
+            // Append and open new parent ul
+            const categoryDiv = subcategory.parentCategoryUl
+            categoryDiv.appendChild(subcategory.element)
+            categoryDiv.style.display = 'block'
         }
-        subcategory.element.parentNode.style.display = 'none'
-        const categoryDiv = subcategory.parentCategoryUl
+
         
-        subcategory.name = obj.name
         
         subcategory.updateSubcatLi()
 
-        categoryDiv.style.display = 'block'
-        categoryDiv.appendChild(subcategory.element)
     }
     
     constructor({id, name, category_id}) {
@@ -46,7 +52,9 @@ export default class Subcategory {
         this.name = name
         this.category_id = category_id
 
-        this.parentCategoryUl = document.getElementById(`submenu-${category_id}`) //! Name change required
+
+        this.parentCategoryUl = document.getElementById(`submenu-${category_id}`) // Find parent node
+
         this.element = document.createElement('li')
         this.element.setAttribute('class', 'submenu-item')
 
@@ -65,7 +73,16 @@ export default class Subcategory {
         return Item.all.filter( item => item.subcategory_id === this.id )
     }
 
-    updateSubcatLi() {
+// TODO Implement this function to clean up code
+    toggleMenu() {
+        if (this.parentCategoryUl.style.display === 'none') {
+            this.parentCategoryUl.style.display = 'block'
+        } else {
+            this.parentCategoryUl.style.display = 'none'
+        }
+    }
+
+    updateSubcatLi = () => {
         const html = `
         <h2 data-subcategory-id='${this.id}'>
             ${this.name}

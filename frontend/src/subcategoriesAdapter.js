@@ -23,18 +23,20 @@ class SubcategoriesAdapter {
     }
 
     renderSubcategories = subcategories => {
-        subcategories.forEach(this.renderSingleCategory)
+        subcategories.forEach(this.createAndRenderSubcategory)
     }
 
-    renderSingleCategory(subcategory) {
-        const subcat = new Subcategory(subcategory)
+    createAndRenderSubcategory(sc) {
+        const subcategory = new Subcategory(sc)
         //! Parent element now ul name change required
-        const catDiv = subcat.parentCategoryUl // Grab parent div for appending
+        const catDiv = subcategory.parentCategoryUl // Grab parent div for appending
 
         // Hide submenu until click event
         catDiv.style.display = 'none'
 
-        catDiv.appendChild(subcat.element)
+        catDiv.appendChild(subcategory.element)
+
+        return subcategory
     }
 
     handleNewSubcategory = () => {
@@ -58,7 +60,7 @@ class SubcategoriesAdapter {
         fetch(this.baseUrl, configObj)
         .then(resp)
         .then(obj => {
-            const subcategory = this.renderSingleCategory(obj)
+            const subcategory = this.createAndRenderSubcategory(obj)
             subcategory.parentCategoryUl.style.display = 'block'
         })
     }
