@@ -27,13 +27,20 @@ export default class Item {
     }
 
     static updateItem({id, name, subcategory_id}) {
-        const item = Item.previousState.find(item => item.id == id)
+        const item = Item.findById(id)
+        const subcategory = Subcategory.findById(item.subcategory_id)
+
         item.name = name
-        item.subcategory_id = subcategory_id
+
+        if (item.subcategory_id !== subcategory.id) {
+            subcategory.element.parentNode.style.display = 'none'
+            item.subcategory_id = subcategory_id
+            // TODO Find out why this isn't opening parent ul 
+            subcategory = Subcategory.findById(subcategory_id)
+            subcategory.element.parentNode.style.display = 'block'
+        }
         item.render()
         
-        const subcategory = Subcategory.findById(subcategory_id)
-
         subcategoriesAdapter.renderArrayOfItems(subcategory.items())
         // Item.getMainState()
     }
