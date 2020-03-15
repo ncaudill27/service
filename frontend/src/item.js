@@ -58,7 +58,7 @@ export default class Item {
     render = () => {
         this.element.setAttribute('data-item-id', this.id)
         this.element.innerHTML = `
-        <img src='/deletebutton.png' alt='Delete button'>
+        <img class='delete' src='/deletebutton.png' alt='Delete button'>
         <br>
         <h4>
             ${this.name}

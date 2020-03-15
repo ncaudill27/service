@@ -3,6 +3,8 @@ import Subcategory from './subcategory.js'
 import Category from './category.js'
 import subcategoriesAdapter from './subcategoriesAdapter.js'
 
+let resp = resp => resp.json()
+
 class ItemsAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl
@@ -10,16 +12,15 @@ class ItemsAdapter {
         this.element = document.querySelector('main')
         this.element.addEventListener('click', this.handleItemDelete)
         this.element.addEventListener('click', this.handleCartAdd)
-        this.element.addEventListener('click', this.handleCartItemDecrement)
 
-        this.addBtn = document.querySelector('.add-item')
-        this.addBtn.addEventListener('click', this.beginItemCreate)
+        // this.addBtn = document.querySelector('.add-item')
+        // this.addBtn.addEventListener('click', this.beginItemCreate)
     }
 
     
     getItems = () => {
         fetch(this.baseUrl)
-        .then(resp => resp.json())
+        .then(resp)
         .then(this.renderItems)
     }
 
@@ -72,7 +73,7 @@ class ItemsAdapter {
         }
 
         fetch(this.baseUrl, configObj)
-        .then(resp => resp.json())
+        .then(resp)
         .then( obj => {
             const sub = Subcategory.findById(obj.subcategory_id)
             subcategoriesAdapter.renderArrayOfItems(sub.items())
@@ -80,7 +81,7 @@ class ItemsAdapter {
     }
     
     handleItemDelete = e => {
-        if (e.target.matches('img')) {
+        if (e.target.matches('img.delete')) {
             const itemId = e.target.parentNode.dataset.itemId
             fetch(`${this.baseUrl}/${itemId}`, {
                 method: 'DELETE',
@@ -89,7 +90,7 @@ class ItemsAdapter {
                     'Accept': 'application/json'
                 }
             })
-            .then(resp => resp.json())
+            .then(resp)
             .then(this.deleteItem)
         }
     }
@@ -106,7 +107,7 @@ class ItemsAdapter {
             body: JSON.stringify(itemObj)
         }
         fetch(`${this.baseUrl}/${itemObj.id}`, configObj)
-        .then(resp => resp.json())
+        .then(resp)
         .then(Item.updateItem)
     }
 
