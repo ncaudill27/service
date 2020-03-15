@@ -124,8 +124,6 @@ export default class Item {
         this.cartItemCount += 1
 
         this.cartItem.innerHTML = this.renderCartItem()
-        this.decrementBtn = this.cartItem.querySelector('img.decrement')
-        this.decrementBtn.addEventListener('click', this.decrementCartItem)
 
         return this.cartItem
     }
@@ -135,11 +133,11 @@ export default class Item {
         this.cartItem.innerHTML = this.renderCartItem()
     }
 
-    decrementCartItem = () => {
-        console.log(this.cartItem)
-        // this.cartItemCount -= 1
-        // this.cartItem.innerHTML = this.renderCartItem()
-    }
+    // decrementCartItem() {
+    //     console.log(this.cartItem)
+    //     // this.cartItemCount -= 1
+    //     // this.cartItem.innerHTML = this.renderCartItem()
+    // }
 
     renderCartItem() {
         const item = `

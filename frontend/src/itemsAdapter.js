@@ -8,8 +8,9 @@ class ItemsAdapter {
         this.baseUrl = baseUrl
 
         this.element = document.querySelector('main')
-        this.element.addEventListener('click', this.handleCartAdd)
         this.element.addEventListener('click', this.handleItemDelete)
+        this.element.addEventListener('click', this.handleCartAdd)
+        this.element.addEventListener('click', this.handleCartItemDecrement)
 
         this.addBtn = document.querySelector('.add-item')
         this.addBtn.addEventListener('click', this.beginItemCreate)
