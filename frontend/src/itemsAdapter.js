@@ -13,11 +13,10 @@ class ItemsAdapter {
         this.element.addEventListener('click', this.handleItemDelete)
         this.element.addEventListener('click', this.handleCartAdd)
 
-        // this.addBtn = document.querySelector('.add-item')
-        // this.addBtn.addEventListener('click', this.beginItemCreate)
+        this.addBtn = document.querySelector('.add-item')
+        this.addBtn.addEventListener('click', this.beginItemCreate)
     }
 
-    
     getItems = () => {
         fetch(this.baseUrl)
         .then(resp)

@@ -2,6 +2,8 @@ import Category from './category.js'
 import Item from './item.js'
 import subcategoriesAdapter from './subcategoriesAdapter.js'
 
+let resp = resp => resp.json()
+
 class CategoriesAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl
@@ -15,7 +17,7 @@ class CategoriesAdapter {
 
     getCategories = () => {
         fetch(this.baseUrl)
-        .then(resp => resp.json())
+        .then(resp)
         .then(this.renderCategories)
     }
 
@@ -38,7 +40,7 @@ class CategoriesAdapter {
                 'Accept': 'application/json'
             }
         })
-        .then(resp => resp.json())
+        .then(resp)
         .then(Category.deleteCategory)
     }
 
@@ -70,7 +72,7 @@ class CategoriesAdapter {
             body: JSON.stringify(newCategoryObj)
         }
         fetch(this.baseUrl, configObj)
-        .then(resp => resp.json())
+        .then(resp)
         .then(this.renderCategory)
     }
 
@@ -98,7 +100,7 @@ class CategoriesAdapter {
             body: JSON.stringify(patchObj)
         }
         fetch(`${this.baseUrl}/${patchObj.id}`, configObj)
-        .then(resp => resp.json())
+        .then(resp)
         .then(Category.patchCategory)
     }
 
