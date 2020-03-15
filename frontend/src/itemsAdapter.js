@@ -28,27 +28,14 @@ class ItemsAdapter {
     }
 
     beginItemCreate = () => {
-            this.renderNewItemForm()
+        // Render form then add event listeners
+        this.element.innerHTML = Item.newItemForm
+        this.addBtn = document.getElementById('add')
+        this.addBtn.addEventListener('click', this.createItemRequest)
     }
 
     renderNewItemForm = () => {
-        this.element.innerHTML = `
-        <div class='form-card'>
-            <h4>New Item</h4>
-            <label>Item Name</label>
-            <input type='text' name='name'><br>
-            <label>Item Price</label>
-            <input type='text' name='price'><br>
-            <label>Category Name</label>
-            <input type='text' name='category'><br>
-            <label>Subcategory Name</label>
-            <input type='text' name='subcategory'><br>
-            <input id='cancel' type='submit' value='Cancel'>
-            <input id='add' type='submit' value='Add'>
-        </div>
-        `
-        this.addBtn = document.getElementById('add')
-        this.addBtn.addEventListener('click', this.createItemRequest)
+
     }
 
     createItemRequest = () => {

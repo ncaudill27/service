@@ -3,26 +3,26 @@ import subcategoriesAdapter from './subcategoriesAdapter.js'
 import itemsAdapter from './itemsAdapter.js'
 
 export default class Item {
-
     
     static all = []
-
+    
     static findById(itemId) {
         return Item.all.find(item => item.id == itemId)
     }
-
-    static create(obj) {
-        new Item(obj)
+    
+    static create = (obj) => {
+        new Item(obj).render()
         const sub = Subcategory.findById(obj.subcategory_id)
         subcategoriesAdapter.renderArrayOfItems(sub.items())
+        console.log(sub.items())
     }
-
+    
     static updateItem({id, name, subcategory_id}) {
         const item = Item.findById(id)
         const subcategory = Subcategory.findById(item.subcategory_id)
-
+        
         item.name = name
-
+        
         if (item.subcategory_id != subcategory.id) {
             subcategory.toggleMenu()
             // TODO Find out why this isn't opening parent ul 
@@ -34,7 +34,7 @@ export default class Item {
         
         subcategoriesAdapter.renderArrayOfItems(subcategory.items())
     }
-
+    
     static previousState = []
 
     static saveMainState = () => {
@@ -56,7 +56,23 @@ export default class Item {
         const item = new Item(itemObj)
         item.render()
     }
-    
+
+    static newItemForm = `
+    <div class='form-card'>
+        <h4>New Item</h4>
+        <label>Item Name</label>
+        <input type='text' name='name'><br>
+        <label>Item Price</label>
+        <input type='text' name='price'><br>
+        <label>Category Name</label>
+        <input type='text' name='category'><br>
+        <label>Subcategory Name</label>
+        <input type='text' name='subcategory'><br>
+        <input id='cancel' type='submit' value='Cancel'>
+        <input id='add' type='submit' value='Add'>
+    </div>
+    `
+
     constructor({id, name, subcategory_id}) {
         this.id = id
         this.name = name
