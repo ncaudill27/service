@@ -1,4 +1,6 @@
-import itemsAdapter from "./itemsAdapter.js"
+import Subcategory from './subcategory.js'
+import subcategoriesAdapter from './subcategoriesAdapter.js'
+import itemsAdapter from './itemsAdapter.js'
 
 export default class Item {
 
@@ -16,6 +18,12 @@ export default class Item {
 
     static findById(itemId) {
         return Item.all.find(item => item.id == itemId)
+    }
+
+    static create(obj) {
+        new Item(obj)
+        const sub = Subcategory.findById(obj.subcategory_id)
+        subcategoriesAdapter.renderArrayOfItems(sub.items())
     }
 
     static updateItem({id, name, subcategory_id}) {
@@ -98,7 +106,7 @@ export default class Item {
         this.cancelBtn.addEventListener('click', Item.getMainState)
     }
 
-    submitEdit = e => {
+    submitEdit = () => {
         const inputs = document.querySelectorAll('input')
         const name = inputs[0].value
         const reqObj = {name: name, id: this.id, subcategory_id: this.subcategory_id}

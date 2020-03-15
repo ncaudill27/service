@@ -55,13 +55,8 @@ class ItemsAdapter {
     }
 
     createItemRequest = () => {
-        const inputs = document.querySelectorAll('input')
-        const name = inputs[0].value
-        const categoryName = inputs[2].value
-        const category = Category.findByName(categoryName)
-        const subcategory = Subcategory.findByNameAndCategoryId(inputs[3].value, category.id)
-        const itemObj = {name: name, subcategory_id: subcategory.id}
-    
+        const itemObj = this.prepRequestObj()
+        
         const configObj = {
             method: 'POST',
             headers: {
@@ -73,10 +68,16 @@ class ItemsAdapter {
 
         fetch(this.baseUrl, configObj)
         .then(resp)
-        .then( obj => {
-            const sub = Subcategory.findById(obj.subcategory_id)
-            subcategoriesAdapter.renderArrayOfItems(sub.items())
-        })
+        .then(Item.create)
+    }
+
+    prepRequestObj() {
+        const inputs = document.querySelectorAll('input')
+        const name = inputs[0].value
+        const categoryName = inputs[2].value
+        const category = Category.findByName(categoryName)
+        const subcategory = Subcategory.findByNameAndCategoryId(inputs[3].value, category.id)
+        return {name: name, subcategory_id: subcategory.id}    
     }
     
     handleItemDelete = e => {
