@@ -55,8 +55,8 @@ class ItemsAdapter {
     }
 
     createItemRequest = () => {
-        const itemObj = this.prepRequestObj()
-        
+        const itemObj = this.prepPostRequestObj()
+
         const configObj = {
             method: 'POST',
             headers: {
@@ -71,7 +71,7 @@ class ItemsAdapter {
         .then(Item.create)
     }
 
-    prepRequestObj() {
+    prepPostRequestObj() {
         const inputs = document.querySelectorAll('input')
         const name = inputs[0].value
         const categoryName = inputs[2].value

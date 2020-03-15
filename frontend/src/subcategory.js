@@ -13,6 +13,10 @@ export default class Subcategory {
     static findById(id) {
         return Subcategory.all.find(sc => sc.id == id)
     }
+
+    static findByName(name) {
+        return Subcategory.all.find(sub => sub.name === name)
+    }
     
     static deleteSubcategory({subcategory_id}) {
         const subcategory = Subcategory.findById(subcategory_id)

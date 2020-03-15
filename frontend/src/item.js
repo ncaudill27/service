@@ -29,8 +29,13 @@ export default class Item {
     static updateItem({id, name, subcategory_id}) {
         const item = Item.previousState.find(item => item.id == id)
         item.name = name
+        item.subcategory_id = subcategory_id
         item.render()
-        Item.getMainState()
+        
+        const subcategory = Subcategory.findById(subcategory_id)
+
+        subcategoriesAdapter.renderArrayOfItems(subcategory.items())
+        // Item.getMainState()
     }
 
     static previousState = []
@@ -95,6 +100,8 @@ export default class Item {
             <input type='text' value='${this.name}'><br>
             <label>Price</label>
             <input type='text'><br>
+            <label>Subcategory</label>
+            <input type='text'><br>
             <input id='cancel' type='submit' value='Cancel'>
             <input id='submit' type='submit' value='Edit'><br>
         <div>
@@ -109,7 +116,10 @@ export default class Item {
     submitEdit = () => {
         const inputs = document.querySelectorAll('input')
         const name = inputs[0].value
-        const reqObj = {name: name, id: this.id, subcategory_id: this.subcategory_id}
+        const subcategoryName = inputs[2].value
+        const subcategory = Subcategory.findByName(subcategoryName)
+
+        const reqObj = {name: name, id: this.id, subcategory_id: subcategory.id}
         itemsAdapter.patchItem(reqObj)
         Item.getMainState()
     }
