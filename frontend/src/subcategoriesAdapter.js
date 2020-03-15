@@ -28,6 +28,7 @@ class SubcategoriesAdapter {
 
     renderSingleCategory(subcategory) {
         const subcat = new Subcategory(subcategory)
+        //! Parent element now ul name change required
         const catDiv = subcat.parentCategoryElement // Grab parent div for appending
         const subDiv = subcat.render()
         // Hide submenu until click event
@@ -108,7 +109,7 @@ class SubcategoriesAdapter {
         }
         fetch(`${this.baseUrl}/${patchObj.id}`, configObj)
         .then(resp)
-        .then(Subcategory.patch)
+        .then(Subcategory.renderPatchResponse)
     }
 
     handleSubmenuSelection = e => {

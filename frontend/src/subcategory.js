@@ -23,22 +23,20 @@ export default class Subcategory {
         subcategory.element.remove()
     }
 
-    static patch(obj) {
+    static renderPatchResponse(obj) {
         const subcategory = Subcategory.findById(obj.id)
-
+        
         if (obj.category_id != subcategory.category_id) {
-            // Change focus of dropdown menu while we still have original parent category
-            subcategory.element.parentNode.style.display = 'none'
-            // Update new category
             subcategory.category_id = obj.category_id
             subcategory.parentCategoryElement = document.getElementById(`submenu-${obj.category_id}`)
         }
+        subcategory.element.parentNode.style.display = 'none'
         const categoryDiv = subcategory.parentCategoryElement
-        subcategory.element.parentNode.style.display = 'block'
         
         subcategory.name = obj.name
-
+        
         const patchedLi = subcategory.render()
+        categoryDiv.style.display = 'block'
         categoryDiv.appendChild(patchedLi)
     }
     
@@ -47,7 +45,7 @@ export default class Subcategory {
         this.name = name
         this.category_id = category_id
 
-        this.parentCategoryElement = document.getElementById(`submenu-${category_id}`)
+        this.parentCategoryElement = document.getElementById(`submenu-${category_id}`) //! Name change required
         this.element = document.createElement('li')
         this.element.setAttribute('class', 'submenu-item')
 

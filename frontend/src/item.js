@@ -36,13 +36,14 @@ export default class Item {
             subcategory.element.parentNode.style.display = 'none'
             item.subcategory_id = subcategory_id
             // TODO Find out why this isn't opening parent ul 
+            // ! If 'old' submenu is open when subcat is editted this works.
+            // ! But old one does not close.
             subcategory = Subcategory.findById(subcategory_id)
-            subcategory.element.parentNode.style.display = 'block'
         }
         item.render()
         
         subcategoriesAdapter.renderArrayOfItems(subcategory.items())
-        // Item.getMainState()
+        subcategory.element.parentNode.style.display = 'block'
     }
 
     static previousState = []
@@ -67,6 +68,7 @@ export default class Item {
         item.render()
     }
 
+// ? Save funtionality for manager use?
     // static appendAddItemBtn() {
     //     const addBtn = document.createElement('div')
     //     addBtn.setAttribute('class', 'card')
