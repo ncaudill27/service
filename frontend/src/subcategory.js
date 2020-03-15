@@ -28,16 +28,17 @@ export default class Subcategory {
         
         if (obj.category_id != subcategory.category_id) {
             subcategory.category_id = obj.category_id
-            subcategory.parentCategoryElement = document.getElementById(`submenu-${obj.category_id}`)
+            subcategory.parentCategoryUl = document.getElementById(`submenu-${obj.category_id}`)
         }
         subcategory.element.parentNode.style.display = 'none'
-        const categoryDiv = subcategory.parentCategoryElement
+        const categoryDiv = subcategory.parentCategoryUl
         
         subcategory.name = obj.name
         
-        const patchedLi = subcategory.render()
+        subcategory.updateSubcatLi()
+
         categoryDiv.style.display = 'block'
-        categoryDiv.appendChild(patchedLi)
+        categoryDiv.appendChild(subcategory.element)
     }
     
     constructor({id, name, category_id}) {
@@ -45,9 +46,17 @@ export default class Subcategory {
         this.name = name
         this.category_id = category_id
 
-        this.parentCategoryElement = document.getElementById(`submenu-${category_id}`) //! Name change required
+        this.parentCategoryUl = document.getElementById(`submenu-${category_id}`) //! Name change required
         this.element = document.createElement('li')
         this.element.setAttribute('class', 'submenu-item')
+
+        this.element.innerHTML = this.updateSubcatLi()
+
+        this.deleteBtn = this.element.querySelector('img.delete')
+        this.deleteBtn.addEventListener('click', ()=> subcategoriesAdapter.destroySubcategory(this.id))
+
+        this.editBtn = this.element.querySelector('img.edit')
+        this.editBtn.addEventListener('click', this.handlePatchEvent)
 
         Subcategory.all.push(this)
     }
@@ -56,22 +65,15 @@ export default class Subcategory {
         return Item.all.filter( item => item.subcategory_id === this.id )
     }
 
-    render() {
-        this.element.innerHTML = `
+    updateSubcatLi() {
+        const html = `
         <h2 data-subcategory-id='${this.id}'>
             ${this.name}
         </h2>
         <img class='delete' src='/deletebutton.png' alt='Delete button'>
         <img class='edit' src='/fountainpen.png' alt='Edit button'>
         `
-
-        this.deleteBtn = this.element.querySelector('img.delete')
-        this.deleteBtn.addEventListener('click', ()=> subcategoriesAdapter.destroySubcategory(this.id))
-
-        this.editBtn = this.element.querySelector('img.edit')
-        this.editBtn.addEventListener('click', this.handlePatchEvent)
-
-        return this.element
+        return html
     }
 
     handlePatchEvent= () => {
