@@ -100,7 +100,8 @@ class ItemsAdapter {
         if (this.addToCartTargetCheck(e)) {
             const itemId = this.setDataSetId(e)
             const item = Item.findById(itemId)
-            item.addToCart()
+            if (!!item)
+                item.addToCart()
         }
     }
 

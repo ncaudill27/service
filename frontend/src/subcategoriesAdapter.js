@@ -1,5 +1,6 @@
 import Subcategory from './subcategory.js'
 import Category from './category.js'
+import Item from './item.js'
 
 let resp = resp => resp.json()
 
@@ -123,11 +124,17 @@ class SubcategoriesAdapter {
 
     renderArrayOfItems(array) {
         let main = document.querySelector('main')
-        main.innerHTML = ''
+        main.innerHTML = `
+        <div id='sort' class='card'>
+            <h4>Sort <br>Alphabetically</h4>
+        </div>
+        `
+        let sortBtn = document.getElementById('sort')
         array.forEach( item => {
             let card = item.render()
             main.appendChild(card)
         })
+        sortBtn.addEventListener('click', ()=>Item.sortCurrentState())
     }
 }
 

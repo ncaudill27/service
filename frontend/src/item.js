@@ -41,8 +41,10 @@ export default class Item {
         Item.previousState = []
         let allCards = document.querySelectorAll('.card')
         allCards.forEach(card => {
-            let item = Item.findById(card.dataset.itemId)
-            Item.previousState.push(item)
+            if ( !!card.dataset.itemId ) {
+                let item = Item.findById(card.dataset.itemId)
+                Item.previousState.push(item)
+            }
         })
     }
 
@@ -50,6 +52,23 @@ export default class Item {
         let main = document.querySelector('main')
         main.innerHTML = ''
         Item.previousState.map(item => main.appendChild(item.element))
+    }
+
+    static sortCurrentState() {
+        Item.saveMainState()
+        let main = document.querySelector('main')
+        main.innerHTML = ''
+        
+        let sortedCards = Item.previousState.sort(Item.sortCardsAphabetically)
+        sortedCards.map(item => main.appendChild(item.element))
+    }
+
+    static sortCardsAphabetically(a, b) {
+        if ( a.name < b.name ) {
+            return -1
+        } else {
+            return 1
+        } 
     }
 
     static createFromObject = itemObj => {
@@ -143,8 +162,8 @@ export default class Item {
         const name = inputs[0].value
         const subcategoryName = inputs[2].value
         const subcategory = Subcategory.findByName(subcategoryName)
-
         const reqObj = {name: name, id: this.id, subcategory_id: subcategory.id}
+
         itemsAdapter.patchItem(reqObj)
         // Item.getMainState()
     }
