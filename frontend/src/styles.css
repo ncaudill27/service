@@ -13,7 +13,16 @@ header h1 {
     padding: 10px;
     margin: 0;
 }
-  
+
+main {
+    display: grid;
+    grid-template-columns: 10em 10em 10em 10em;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+    padding-top: 10px;
+    margin-left: 230px;
+}
+
 .sidebar {
     margin: 0;
     width: 200px;
@@ -109,15 +118,6 @@ img:hover {
     right: 20px;
 }
 
-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-gap: 20px;
-    padding-top: 10px;
-    margin-left: 230px;
-}
-  
 .card {
     margin: auto;
     position: relative;
