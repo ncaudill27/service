@@ -64,6 +64,8 @@ export default class Category {
     }
     
     toggleSubmenu = (e) => {        
+        if (e.target.localName !== 'h2') return
+        
         const subMenu = this.submenu
         if (subMenu.style.display === 'none') {
             subMenu.style.display = 'block'
@@ -77,6 +79,16 @@ export default class Category {
     }
 
     handleEdit = () => {
+        this.displayEditForm()
+
+        const submitPatchBtn = document.getElementById('edit-category')
+        submitPatchBtn.addEventListener('click', () => {
+            const requestObj = this.prepPatchRequestObj(this)
+            categoriesAdapter.patchCategory(requestObj)
+        })
+    }
+
+    displayEditForm() {
         const main = document.querySelector('main')
         main.innerHTML= `
         <div class='form-card'>
@@ -86,12 +98,6 @@ export default class Category {
             <input id='edit-category' type='submit' value='Edit'>
         </div>
         `
-
-        const submitPatchBtn = document.getElementById('edit-category')
-        submitPatchBtn.addEventListener('click', () => {
-            const requestObj = this.prepPatchRequestObj(this)
-            categoriesAdapter.patchCategory(requestObj)
-        })
     }
 
     prepPatchRequestObj({id, name}) {
