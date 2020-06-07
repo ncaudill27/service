@@ -1,6 +1,7 @@
 import Subcategory from './subcategory.js'
 import subcategoriesAdapter from './subcategoriesAdapter.js'
 import itemsAdapter from './itemsAdapter.js'
+import CartItem from './cartItem.js';
 
 export default class Item {
     
@@ -96,10 +97,11 @@ export default class Item {
         this.id = id
         this.name = name
         this.subcategory_id = subcategory_id
-        this.cartItemCount = 0
+        // this.cartItemCount = 0
 
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'card')
+        this.element.setAttribute('data-item-id', this.id)
         this.element.addEventListener('click', this.addToCart)
     }
 
@@ -114,7 +116,6 @@ export default class Item {
     // }
 
     render = () => {
-        this.element.setAttribute('data-item-id', this.id)
         this.element.innerHTML = `
         <img class='delete' src='/deletebutton.png' alt='Delete button'>
         <br>
@@ -178,48 +179,20 @@ export default class Item {
         
         if (this.cartItem) return this.incrementCartItem()
 
-        this.cartItem = this.createCartItem()
-        cart.appendChild(this.cartItem)
-
-        const decrementButton = document.querySelector("img.decrement")
-        decrementButton.addEventListener('click', ()=> console.log('hello'))
+        this.cartItem = new CartItem(this);
+        cart.appendChild(this.cartItem.element);
     }
 
     createCartItem() {
-        this.cartItem = document.createElement('div')
-        this.cartItem.setAttribute('class', 'cart-item')
-        this.cartItemCount += 1
-
-        this.cartItem.innerHTML = this.renderCartItem()
-
+        const cartItem = new CartItem(this)
         // const decrementButton = document.querySelector("img.decrement")
         // decrementButton.addEventListener('click', this.decrementCartItem)
-        return this.cartItem
+        return cartItem
     }
 
     incrementCartItem() {
-        this.cartItemCount += 1
-        this.cartItem.innerHTML = this.renderCartItem()
-    }
-
-    decrementCartItem() {
-        console.log(this.cartItem)
-        this.cartItemCount -= 1
-        this.cartItem.innerHTML = this.renderCartItem()
-    }
-
-    renderCartItem() {
-        const item = `
-        <p>
-            (${this.cartItemCount}) ${this.name}
-        </p>
-        <img class='decrement' src='/minus.png' alt='Decrement item'>
-        <img class='delete' src='/deletebutton.png' alt='Delete button'>
-        ` 
-        // if (this.cartItem) {
-        //     const decrementButton = document.querySelector("img.decrement")
-        //     decrementButton.addEventListener('click', this.decrementCartItem)
-        // }
-        return item
+        // this.cartItemCount += 1
+        this.cartItem.cartItemCount += 1
+        this.cartItem.render()
     }
 }
