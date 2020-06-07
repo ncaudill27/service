@@ -57,6 +57,7 @@ export default class Subcategory {
 
         this.element = document.createElement('li')
         this.element.setAttribute('class', 'submenu-item')
+        this.element.addEventListener('click', this.displayItems)
 
         this.element.innerHTML = this.updateSubcatLi()
 
@@ -118,5 +119,18 @@ export default class Subcategory {
         const categoryName = inputs[1].value
         const category = Category.findByName(categoryName)
         return {id: id,name: newName, category_id: category.id}
+    }
+
+    displayItems = () => {
+        console.log(this.items);
+        
+        let main = document.querySelector('main')
+        main.innerHTML = ""
+        // let sortBtn = document.getElementById('sort')
+        this.items().forEach( item => {
+            let card = item.render()
+            main.appendChild(card)
+        })
+        // sortBtn.addEventListener('click', () => Item.sortCurrentState())
     }
 }

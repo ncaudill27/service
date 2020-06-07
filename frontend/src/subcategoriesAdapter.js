@@ -10,7 +10,7 @@ class SubcategoriesAdapter {
 
         this.element = document.querySelector('.sidebar')
 
-        this.element.addEventListener('click', this.handleSubmenuSelection)
+        // this.element.addEventListener('click', this.handleSubmenuSelection)
 
         this.addBtn = document.querySelector('.add-subcategory')
         this.addBtn.addEventListener('click', this.handleNewSubcategory)
@@ -112,29 +112,6 @@ class SubcategoriesAdapter {
         fetch(`${this.baseUrl}/${patchObj.id}`, configObj)
         .then(resp)
         .then(Subcategory.renderPatchResponse)
-    }
-
-    handleSubmenuSelection = e => {
-        if (e.target.matches('.submenu-item > h2')) {
-            const subId = e.target.dataset.subcategoryId
-            const subcat = Subcategory.findById(subId)
-            this.renderArrayOfItems(subcat.items())
-        }
-    }
-
-    renderArrayOfItems(array) {
-        let main = document.querySelector('main')
-        main.innerHTML = `
-        <div id='sort' class='card'>
-            <h4>Sort <br>Alphabetically</h4>
-        </div>
-        `
-        let sortBtn = document.getElementById('sort')
-        array.forEach( item => {
-            let card = item.render()
-            main.appendChild(card)
-        })
-        sortBtn.addEventListener('click', ()=>Item.sortCurrentState())
     }
 }
 
