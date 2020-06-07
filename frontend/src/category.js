@@ -22,6 +22,10 @@ export default class Category {
         const h2 = category.element.querySelector('h2')
         h2.innerText = obj.name
     }
+    
+        static findByName(name) {
+            return Category.all.find(cat => cat.name == name)
+        }
 
     constructor({id, name}) {
         this.id = id
@@ -32,10 +36,6 @@ export default class Category {
         this.element.setAttribute('data-category-id', this.id)
 
         Category.all.push(this)
-    }
-
-    static findByName(name) {
-        return Category.all.find(cat => cat.name == name)
     }
 
     render() {
