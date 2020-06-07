@@ -29,7 +29,7 @@ class SubcategoriesAdapter {
 
     createAndRenderSubcategory(sc) {
         const subcategory = new Subcategory(sc)
-        //! Parent element now ul name change required
+
         const catDiv = subcategory.parentCategoryUl // Grab parent div for appending
 
         // Hide submenu until click event

@@ -1,7 +1,6 @@
 import Item from './item.js'
 import Subcategory from './subcategory.js'
 import Category from './category.js'
-import subcategoriesAdapter from './subcategoriesAdapter.js'
 
 let resp = resp => resp.json()
 
@@ -11,7 +10,6 @@ class ItemsAdapter {
 
         this.element = document.querySelector('main')
         this.element.addEventListener('click', this.handleItemDelete)
-        this.element.addEventListener('click', this.handleCartAdd)
 
         this.addBtn = document.querySelector('.add-item')
         this.addBtn.addEventListener('click', this.beginItemCreate)
@@ -93,30 +91,6 @@ class ItemsAdapter {
         fetch(`${this.baseUrl}/${itemObj.id}`, configObj)
         .then(resp)
         .then(Item.updateItem)
-    }
-
-// Functions relevant to adding items to cart.
-    handleCartAdd = e => {
-        if (this.addToCartTargetCheck(e)) {
-            const itemId = this.setDataSetId(e)
-            const item = Item.findById(itemId)
-            if (!!item)
-                item.addToCart()
-        }
-    }
-
-// Allows both .card div or h4 within to be clickable for cart additions
-    setDataSetId(e) {
-        let itemId = e.target.dataset.itemId
-        if (e.target.matches('h4')) {
-            itemId = e.target.parentNode.dataset.itemId
-        }
-        return itemId
-    }
-
-// Added for readability
-    addToCartTargetCheck(e) {
-        return e.target.matches('.card') || e.target.parentNode.matches('.card') && !e.target.matches('img')
     }
 }
     

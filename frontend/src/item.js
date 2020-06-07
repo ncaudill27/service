@@ -100,6 +100,7 @@ export default class Item {
 
         this.element = document.createElement('div')
         this.element.setAttribute('class', 'card')
+        this.element.addEventListener('click', this.addToCart)
     }
 
 
@@ -169,13 +170,14 @@ export default class Item {
     }
 
 // Cart related functions
-    addToCart = ()=> {
+    addToCart = (e) => {
+        if (e.target.localName === 'img') return
+        
         const cart = document.querySelector('.cart')
         cart.style.display = 'block'
         
-        if (this.cartItem) {
-            return this.incrementCartItem()
-        }
+        if (this.cartItem) return this.incrementCartItem()
+
         this.cartItem = this.createCartItem()
         cart.appendChild(this.cartItem)
     }
@@ -187,6 +189,8 @@ export default class Item {
 
         this.cartItem.innerHTML = this.renderCartItem()
 
+        // const decrementButton = document.querySelector("img.decrement")
+        // decrementButton.addEventListener('click', this.decrementCartItem)
         return this.cartItem
     }
 
@@ -195,11 +199,11 @@ export default class Item {
         this.cartItem.innerHTML = this.renderCartItem()
     }
 
-    // decrementCartItem() {
-    //     console.log(this.cartItem)
-    //     // this.cartItemCount -= 1
-    //     // this.cartItem.innerHTML = this.renderCartItem()
-    // }
+    decrementCartItem() {
+        console.log(this.cartItem)
+        this.cartItemCount -= 1
+        this.cartItem.innerHTML = this.renderCartItem()
+    }
 
     renderCartItem() {
         const item = `
@@ -208,7 +212,11 @@ export default class Item {
         </p>
         <img class='decrement' src='/minus.png' alt='Decrement item'>
         <img class='delete' src='/deletebutton.png' alt='Delete button'>
-        `
+        ` 
+        // if (this.cartItem) {
+        //     const decrementButton = document.querySelector("img.decrement")
+        //     decrementButton.addEventListener('click', this.decrementCartItem)
+        // }
         return item
     }
 }

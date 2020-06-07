@@ -64,7 +64,6 @@ export default class Category {
         this.submenu = document.createElement('ul')
         this.submenu.setAttribute('id', `submenu-${this.id}`)
         this.submenu.setAttribute('class', 'submenu')
-        this.submenu.setAttribute('style', 'none')
 
         this.element.appendChild(this.submenu)
         this.element.addEventListener('click', this.toggleSubmenu)
