@@ -79,7 +79,8 @@ export default class Category {
     
     toggleSubmenu = (e) => {        
         if (e.target.localName !== 'h2') return
-        
+        if (e.target.parentNode.nodeName !== "DIV") return
+
         const subMenu = this.submenu
         if (subMenu.style.display === 'none') {
             subMenu.style.display = 'block'

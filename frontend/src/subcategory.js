@@ -43,7 +43,7 @@ export default class Subcategory {
 
         
         
-        subcategory.updateSubcatLi()
+        subcategory.render()
 
     }
     
@@ -59,7 +59,7 @@ export default class Subcategory {
         this.element.setAttribute('class', 'submenu-item')
         this.element.addEventListener('click', this.displayItems)
 
-        this.element.innerHTML = this.updateSubcatLi()
+        this.element.innerHTML = this.render()
 
         this.deleteBtn = this.element.querySelector('img.delete')
         this.deleteBtn.addEventListener('click', ()=> subcategoriesAdapter.destroySubcategory(this.id))
@@ -74,16 +74,7 @@ export default class Subcategory {
         return Item.all.filter( item => item.subcategory_id === this.id )
     }
 
-// TODO Implement this function to clean up code
-    toggleMenu() {
-        if (this.parentCategoryUl.style.display === 'none') {
-            this.parentCategoryUl.style.display = 'block'
-        } else {
-            this.parentCategoryUl.style.display = 'none'
-        }
-    }
-
-    updateSubcatLi = () => {
+    render = () => {
         const html = `
         <h2 data-subcategory-id='${this.id}'>
             ${this.name}
@@ -122,8 +113,6 @@ export default class Subcategory {
     }
 
     displayItems = () => {
-        console.log(this.items);
-        
         let main = document.querySelector('main')
         main.innerHTML = ""
         // let sortBtn = document.getElementById('sort')
