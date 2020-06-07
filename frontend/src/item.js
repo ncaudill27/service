@@ -172,27 +172,19 @@ export default class Item {
 
 // Cart related functions
     addToCart = (e) => {
-        if (e.target.localName === 'img') return
+        if (e.target.localName === 'img') return;
         
-        const cart = document.querySelector('.cart')
-        cart.style.display = 'block'
+        const cart = document.querySelector('.cart');
+        cart.style.display = 'block';
         
-        if (this.cartItem) return this.incrementCartItem()
+        if (this.cartItem) return this.incrementCartItem();
 
         this.cartItem = new CartItem(this);
         cart.appendChild(this.cartItem.element);
     }
 
-    createCartItem() {
-        const cartItem = new CartItem(this)
-        // const decrementButton = document.querySelector("img.decrement")
-        // decrementButton.addEventListener('click', this.decrementCartItem)
-        return cartItem
-    }
-
     incrementCartItem() {
-        // this.cartItemCount += 1
-        this.cartItem.cartItemCount += 1
-        this.cartItem.render()
+        this.cartItem.cartItemCount++;
+        this.cartItem.render();
     }
 }
