@@ -180,6 +180,9 @@ export default class Item {
 
         this.cartItem = this.createCartItem()
         cart.appendChild(this.cartItem)
+
+        const decrementButton = document.querySelector("img.decrement")
+        decrementButton.addEventListener('click', ()=> console.log('hello'))
     }
 
     createCartItem() {
