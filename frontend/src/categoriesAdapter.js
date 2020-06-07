@@ -46,7 +46,7 @@ class CategoriesAdapter {
 
     handleAddCategory = () => {
         Item.saveMainState()
-        this.renderCategoryForm()
+        Category.displayCategoryForm()
         // Once form available listen for submit
         if (document.getElementById('add-category')) {
             const addForm = document.getElementById('add-category')
@@ -74,20 +74,6 @@ class CategoriesAdapter {
         .then(this.renderCategory)
     }
 
-    renderCategoryForm() {
-        const main = document.querySelector('main')
-        main.innerHTML = `
-        <div class='form-card'>
-            <h4>New Category</h4>
-            <form id='add-category'>
-                <label>Name</label>
-                <input type='text' name='name'>
-                <input type='submit' value='Add'>
-            </form>
-        </div>
-        `
-    }
-
     patchCategory = patchObj => {
         const configObj = {
             method: 'PATCH',
@@ -101,7 +87,6 @@ class CategoriesAdapter {
         .then(resp)
         .then(Category.patchCategory)
     }
-
 }
 
 const categoriesAdapter = new CategoriesAdapter('http://localhost:3000/categories')

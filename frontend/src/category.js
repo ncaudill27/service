@@ -23,9 +23,23 @@ export default class Category {
         h2.innerText = obj.name
     }
     
-        static findByName(name) {
-            return Category.all.find(cat => cat.name == name)
-        }
+    static findByName(name) {
+        return Category.all.find(cat => cat.name == name)
+    }
+
+    static displayCategoryForm() {
+        const main = document.querySelector('main')
+        main.innerHTML = `
+        <div class='form-card'>
+            <h4>New Category</h4>
+            <form id='add-category'>
+                <label>Name</label>
+                <input type='text' name='name'>
+                <input type='submit' value='Add'>
+            </form>
+        </div>
+        `
+    }
 
     constructor({id, name}) {
         this.id = id
