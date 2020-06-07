@@ -9,10 +9,11 @@ class CategoriesAdapter {
         this.baseUrl = baseUrl
 
         this.element = document.querySelector('.sidebar')
+        this.addButton = document.querySelector('.add-category')
 
         this.element.addEventListener('click', this.toggleSubmenu)
         // this.element.addEventListener('click', this.destroyCategory)
-        this.element.addEventListener('click', this.handleAddCategory)
+        this.addButton.addEventListener('click', this.handleAddCategory)
     }
 
     getCategories = () => {
@@ -44,11 +45,9 @@ class CategoriesAdapter {
         .then(Category.deleteCategory)
     }
 
-    handleAddCategory = e => {
-        if (e.target.matches('.add-category')) {
-            Item.saveMainState()
-            this.renderCategoryForm()
-        }
+    handleAddCategory = () => {
+        Item.saveMainState()
+        this.renderCategoryForm()
         // Once form available listen for submit
         if (document.getElementById('add-category')) {
             const addForm = document.getElementById('add-category')
