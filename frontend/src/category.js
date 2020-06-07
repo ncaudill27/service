@@ -47,10 +47,13 @@ export default class Category {
         <img class='edit' id='edit-category-${this.id}' src='/fountainpen.png' alt='Edit button'>
         `
         // Node to attach Subcategories to
-        const submenu = document.createElement('ul')
-        submenu.setAttribute('id', `submenu-${this.id}`)
-        submenu.setAttribute('class', 'submenu')
-        this.element.appendChild(submenu)
+        this.submenu = document.createElement('ul')
+        this.submenu.setAttribute('id', `submenu-${this.id}`)
+        this.submenu.setAttribute('class', 'submenu')
+        this.submenu.setAttribute('style', 'none')
+
+        this.element.appendChild(this.submenu)
+        this.element.addEventListener('click', this.toggleSubmenu)
 
         const deleteBtn = this.element.querySelector('img.delete')
         deleteBtn.addEventListener('click', this.handleDelete)
@@ -58,6 +61,15 @@ export default class Category {
         const editBtn = this.element.querySelector('img.edit')
         editBtn.addEventListener('click', this.handleEdit)
         return this.element
+    }
+    
+    toggleSubmenu = (e) => {        
+        const subMenu = this.submenu
+        if (subMenu.style.display === 'none') {
+            subMenu.style.display = 'block'
+        } else {
+            subMenu.style.display = 'none'
+        }
     }
 
     handleDelete = () => {

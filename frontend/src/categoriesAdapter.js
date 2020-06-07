@@ -11,7 +11,6 @@ class CategoriesAdapter {
         this.element = document.querySelector('.sidebar')
         this.addButton = document.querySelector('.add-category')
 
-        this.element.addEventListener('click', this.toggleSubmenu)
         // this.element.addEventListener('click', this.destroyCategory)
         this.addButton.addEventListener('click', this.handleAddCategory)
     }
@@ -101,19 +100,6 @@ class CategoriesAdapter {
         fetch(`${this.baseUrl}/${patchObj.id}`, configObj)
         .then(resp)
         .then(Category.patchCategory)
-    }
-
-    toggleSubmenu(e) {
-        if (e.target.matches('.menu-item > h2')) {
-            const subMenu = e.target.parentNode.lastChild
-            if (!!subMenu.style) {
-                if (subMenu.style.display === 'none') {
-                    subMenu.style.display = 'block'
-                } else {
-                    subMenu.style.display = 'none'
-                }
-            }
-        }
     }
 
 }
