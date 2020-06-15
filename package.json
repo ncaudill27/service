@@ -1,11 +1,14 @@
 {
   "name": "tab-me-out",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Point of sales prototype",
-  "main": "frontend/index.js",
+  "main": "client/src/index.js",
+  "engines": {
+    "node": "10.x",
+    "npm": "6.x"
+  },
   "scripts": {
-    "build": "cd client && npm install && npm run build && cd ..",
-    "deploy": "cp -a "
+    "start": "node clent/src/index.js"
   },
   "repository": {
     "type": "git",

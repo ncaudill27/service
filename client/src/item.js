@@ -117,13 +117,13 @@ export default class Item {
 
     render = () => {
         this.element.innerHTML = `
-        <img class='delete' src='/deletebutton.png' alt='Delete button'>
+        <img class='delete' src='/public/deletebutton.png' alt='Delete button'>
         <br>
         <h4>
             ${this.name}
         </h4>
         <span>
-            <img src='/fountainpen.png' alt='Edit button'>
+            <img src='/public/fountainpen.png' alt='Edit button'>
         </span>
         `
         this.editBtn = this.element.querySelector('span')

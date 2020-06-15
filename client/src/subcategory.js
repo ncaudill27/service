@@ -79,8 +79,8 @@ export default class Subcategory {
         <h2 data-subcategory-id='${this.id}'>
             ${this.name}
         </h2>
-        <img class='delete' src='/deletebutton.png' alt='Delete button'>
-        <img class='edit' src='/fountainpen.png' alt='Edit button'>
+        <img class='delete' src='/public/deletebutton.png' alt='Delete button'>
+        <img class='edit' src='/public/fountainpen.png' alt='Edit button'>
         `
         return html
     }

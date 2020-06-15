@@ -15,8 +15,8 @@ export default class CartItem {
       <p>
         (${this.cartItemCount}) ${this.name}
       </p>  
-      <img class='decrement' src='/minus.png' alt='Decrement item'>
-      <img class='delete' src='/deletebutton.png' alt='Delete button'>  
+      <img class='decrement' src='/public/minus.png' alt='Decrement item'>
+      <img class='delete' src='/public/deletebutton.png' alt='Delete button'>  
     `;
 
     this.decrementButton = this.element.querySelector("img.decrement");
