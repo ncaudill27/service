@@ -85,14 +85,14 @@ img:hover {
     width: 230px;
     background-color: #98FB98;
     float: right;
-    padding-right: 5px;
-    padding-left: 15px;
+    padding: 0px 5px 20px 15px;
     border-radius: 5px;
     text-align: left;
 }
 
 .cart-item {
     position: relative;
+    height: 30px;
 }
 
 .cart-item p {
@@ -102,6 +102,12 @@ img:hover {
 
 .cart-item p:first-of-type {
     text-indent: -22px;
+}
+
+.cart-item span {
+    position: absolute;
+    top: 1em;
+    left: 24px;
 }
 
 .cart-item img {

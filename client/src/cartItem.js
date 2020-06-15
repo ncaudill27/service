@@ -1,7 +1,9 @@
 export default class CartItem {
-  constructor({id, name}) {
+  constructor({id, name, price, currentStock}) {
     this.id = id;
     this.name = name;
+    this.price = price;
+    this.currentStock = currentStock;
     this.cartItemCount = 1;
 
     this.element = document.createElement('div');
@@ -14,7 +16,10 @@ export default class CartItem {
     this.element.innerHTML = `
       <p>
         (${this.cartItemCount}) ${this.name}
-      </p>  
+      </p>
+      <span>
+        $${this.cartItemCount *  this.price}
+      </span>
       <img class='decrement' src='/public/minus.png' alt='Decrement item'>
       <img class='delete' src='/public/deletebutton.png' alt='Delete button'>  
     `;
