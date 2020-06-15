@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_03_10_010235) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -20,7 +23,9 @@ ActiveRecord::Schema.define(version: 2020_03_10_010235) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
-    t.integer "subcategory_id", null: false
+    t.float "price"
+    t.integer "current_stock"
+    t.bigint "subcategory_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["subcategory_id"], name: "index_items_on_subcategory_id"

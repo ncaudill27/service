@@ -28,8 +28,13 @@ categories.each do |pair|
     val.each do |name|
       sub_cat = Subcategory.create(name: name, category_id: category.id)
       10.times do
-        food_name = Faker::Food.dish
-        Item.create(name: food_name, subcategory_id: sub_cat.id)
+        food_name = 
+        Item.create(
+          name:           Faker::Food.dish,
+          subcategory_id: sub_cat.id,
+          price:          Faker::Number.decimal(l_digits: 2),
+          current_stock:  Faker::Number.number(digits: 2)
+        )
       end
     end
   end

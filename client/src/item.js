@@ -93,9 +93,11 @@ export default class Item {
     </div>
     `
 
-    constructor({id, name, subcategory_id}) {
+    constructor({id, name, price, current_stock, subcategory_id}) {
         this.id = id
         this.name = name
+        this.price = price
+        this.currentStock = current_stock
         this.subcategory_id = subcategory_id
         // this.cartItemCount = 0
 
@@ -173,6 +175,7 @@ export default class Item {
 // Cart related functions
     addToCart = (e) => {
         if (e.target.localName === 'img') return;
+        console.log(this.price);
         
         const cart = document.querySelector('.cart');
         cart.style.display = 'block';
