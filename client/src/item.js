@@ -180,10 +180,21 @@ export default class Item {
         const cart = document.querySelector('.cart');
         cart.style.display = 'block';
         
+        
         if (this.cartItem) return this.incrementCartItem();
-
+        
         this.cartItem = new CartItem(this);
         cart.appendChild(this.cartItem.element);
+
+        const subTotal = document.createElement('div');
+        subTotal.className = 'subtotal'
+        subTotal.innerHTML = `
+        <div class='content'>
+            <strong>Subtotal</strong>
+            <span>$XX.XX</span>
+        </div>
+        `;
+        if (!cart.textContent.includes('Subtotal')) cart.appendChild(subTotal);
     }
 
     incrementCartItem() {

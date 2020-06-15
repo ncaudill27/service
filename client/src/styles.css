@@ -81,13 +81,33 @@ img:hover {
 
 .cart {
     display: none;
+    position: relative;
     margin: 10px auto 10px auto;
     width: 230px;
     background-color: #98FB98;
     float: right;
-    padding: 0px 5px 20px 15px;
+    padding: 0px 5px 60px 15px;
     border-radius: 5px;
     text-align: left;
+}
+
+.subtotal {
+    position: absolute;
+    width: 100%;
+    height: 25px;
+    padding-top: 10x;
+    bottom: 15px;
+    right: 0px;
+    border-top: black 1px solid;
+}
+
+.content {
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+.subtotal span {
+    margin-left: 50px;
 }
 
 .cart-item {
