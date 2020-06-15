@@ -2,6 +2,7 @@ import Subcategory from './subcategory.js'
 import subcategoriesAdapter from './subcategoriesAdapter.js'
 import itemsAdapter from './itemsAdapter.js'
 import CartItem from './cartItem.js';
+import cart from './cart.js';
 
 export default class Item {
     
@@ -174,27 +175,27 @@ export default class Item {
 
 // Cart related functions
     addToCart = (e) => {
-        if (e.target.localName === 'img') return;
-        console.log(this.price);
-        
-        const cart = document.querySelector('.cart');
-        cart.style.display = 'block';
+        if (e.target.localName === 'img') return; // Ensures an item edit or delete button isn't being pressed
+
+        // const cart = document.querySelector('.cart');
+        // cart.style.display = 'block';
         
         
         if (this.cartItem) return this.incrementCartItem();
         
         this.cartItem = new CartItem(this);
-        cart.appendChild(this.cartItem.element);
+        cart.renderCartItem(this.cartItem.element);
 
-        const subTotal = document.createElement('div');
-        subTotal.className = 'subtotal'
-        subTotal.innerHTML = `
-        <div class='content'>
-            <strong>Subtotal</strong>
-            <span>$XX.XX</span>
-        </div>
-        `;
-        if (!cart.textContent.includes('Subtotal')) cart.appendChild(subTotal);
+        // const subTotal = document.createElement('div');
+        // subTotal.className = 'subtotal'
+        // subTotal.innerHTML = `
+        // <div class='content'>
+        //     <strong>Subtotal</strong>
+        //     <span>$XX.XX</span>
+        // </div>
+        // `;
+        // if (!cart.textContent.includes('Subtotal')) cart.appendChild(subTotal);
+        
     }
 
     incrementCartItem() {
