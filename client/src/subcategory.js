@@ -52,8 +52,6 @@ export default class Subcategory {
         this.name = name
         this.category_id = category_id
 
-
-        this.items = 
         this.parentCategoryUl = document.getElementById(`submenu-${category_id}`) // Find parent node
 
         this.element = document.createElement('li')
@@ -72,8 +70,12 @@ export default class Subcategory {
         Subcategory.all.push(this)
     }
     
-    items() {
+    items = () => {
         return Item.all.filter( item => item.subcategory_id === this.id )
+    }
+
+    category = () => {
+        return Category.findById(this.category_id);
     }
 
     render = () => {

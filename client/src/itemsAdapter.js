@@ -95,9 +95,7 @@ class ItemsAdapter {
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
             body: JSON.stringify(itemObj)
         }
-        fetch(`${this.baseUrl}/${itemObj.id}`, configObj)
-        .then(resp)
-        .then(Item.updateItem)
+        return fetch(`${this.baseUrl}/${itemObj.id}`, configObj)
     }
 }
     

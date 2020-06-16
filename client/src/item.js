@@ -110,8 +110,8 @@ export default class Item {
         Item.all.push(this)
     }
 
-    subcategory() {
-        Subcategory.findById(this.subcategory_id);
+    subcategory = () => {
+        return Subcategory.findById(this.subcategory_id);
     }
 
     render = () => {
@@ -136,22 +136,23 @@ export default class Item {
         this.renderEditForm()
     }
 
-    update({name, price, current_stock, subcategory_id}) {
+    update = ({name, price, current_stock, subcategory_id}) => {
         this.name = name;
         this.price = price;
         this.currentStock = current_stock;
         this.subcategory_id = subcategory_id;
+        console.log(this.subcategory().category().name);
+        
+        // if (item.subcategory_id != subcategory.id) {
+        //     subcategory.toggleMenu()
+        //     // TODO Find out why this isn't opening parent ul 
+        //     item.subcategory_id = subcategory_id
+        //     subcategory = Subcategory.findById(subcategory_id)
+        //     subcategory.toggleMenu()
+        // }
+        // item.render();
 
-        if (item.subcategory_id != subcategory.id) {
-            subcategory.toggleMenu()
-            // TODO Find out why this isn't opening parent ul 
-            item.subcategory_id = subcategory_id
-            subcategory = Subcategory.findById(subcategory_id)
-            subcategory.toggleMenu()
-        }
-        item.render();
-
-        subcategory.displayItems();
+        // subcategory.displayItems();
     }
 
     renderEditForm = () => {
@@ -176,20 +177,21 @@ export default class Item {
     }
 
     submitEdit = () => {
-        const inputs = document.querySelectorAll('input')
-        const name = inputs[0].value
-        const price = inputs[1].value
-        const subcategoryName = inputs[2].value
-        const subcategory = Subcategory.findByName(subcategoryName)
-        console.log(subcategoryName, subcategory.id);
+        const inputs = document.querySelectorAll('input');
+        const name = inputs[0].value;
+        const price = inputs[1].value;
+        const subcategoryName = inputs[2].value;
+        const subcategory = Subcategory.findByName(subcategoryName);
         const reqObj = {
             id: this.id, 
             name,
             price,
             subcategory_id: subcategory.id
-        }
+        };
 
         itemsAdapter.patchItem(reqObj)
+        .then(res => res.json())
+        .then(this.update);
         // Item.getMainState()
     }
 
