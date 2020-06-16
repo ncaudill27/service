@@ -56,10 +56,15 @@ class ItemsAdapter {
     prepPostRequestObj() {
         const inputs = document.querySelectorAll('input')
         const name = inputs[0].value
+        const price = inputs[1].value
         const categoryName = inputs[2].value
         const category = Category.findByName(categoryName)
         const subcategory = Subcategory.findByNameAndCategoryId(inputs[3].value, category.id)
-        return {name: name, subcategory_id: subcategory.id}    
+        return {
+            name,
+            price,
+            subcategory_id: subcategory.id
+        }    
     }
     
     handleItemDelete = e => {

@@ -15,7 +15,7 @@ export default class Item {
     static create = (obj) => {
         new Item(obj).render()
         const sub = Subcategory.findById(obj.subcategory_id)
-        subcategoriesAdapter.renderArrayOfItems(sub.items())
+        sub.displayItems()
         console.log(sub.items())
     }
     
@@ -106,6 +106,8 @@ export default class Item {
         this.element.setAttribute('class', 'card')
         this.element.setAttribute('data-item-id', this.id)
         this.element.addEventListener('click', this.addToCart)
+
+        Item.all.push(this)
     }
 
 
@@ -132,7 +134,6 @@ export default class Item {
         this.editBtn = this.element.querySelector('span')
         this.editBtn.addEventListener('click', this.handleItemEdit)
 
-        Item.all.push(this)
         return this.element
     }
     

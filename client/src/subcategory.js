@@ -119,7 +119,7 @@ export default class Subcategory {
         this.items().forEach( item => {
             let card = item.render()
             main.appendChild(card)
-        })
+        });
         // sortBtn.addEventListener('click', () => Item.sortCurrentState())
     }
 }
