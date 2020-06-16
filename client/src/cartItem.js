@@ -19,10 +19,12 @@ export default class CartItem {
     this.element.innerHTML = `
       <p>
         (${this.cartItemCount}) ${this.name}
+        <br>
+        <span>
+          $${this.currentPrice}
+        </span>
       </p>
-      <span>
-        $${this.currentPrice}
-      </span>
+
       <img class='decrement' src='/public/minus.png' alt='Decrement item'>
       <img class='delete' src='/public/deletebutton.png' alt='Delete button'>  
     `;

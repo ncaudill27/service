@@ -112,7 +112,7 @@ img:hover {
 
 .cart-item {
     position: relative;
-    height: 30px;
+    height: fit-content;
 }
 
 .cart-item p {
@@ -124,11 +124,11 @@ img:hover {
     text-indent: -22px;
 }
 
-.cart-item span {
+/* .cart-item span {
     position: absolute;
-    top: 1em;
-    left: 24px;
-}
+    top: 1.15em;
+    left: 100px;
+} */
 
 .cart-item img {
     position: absolute;
