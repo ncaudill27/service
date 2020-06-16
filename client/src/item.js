@@ -149,9 +149,9 @@ export default class Item {
             <label>Name</label>
             <input type='text' value='${this.name}'><br>
             <label>Price</label>
-            <input type='text'><br>
+            <input type='text' value=${this.price}><br>
             <label>Subcategory</label>
-            <input type='text'><br>
+            <input type='text' value=${Subcategory.findById(this.subcategory_id).name}><br>
             <input id='cancel' type='submit' value='Cancel'>
             <input id='submit' type='submit' value='Edit'><br>
         <div>
@@ -164,11 +164,18 @@ export default class Item {
     }
 
     submitEdit = () => {
+        console.log(this);
         const inputs = document.querySelectorAll('input')
         const name = inputs[0].value
+        const price = inputs[1].value
         const subcategoryName = inputs[2].value
         const subcategory = Subcategory.findByName(subcategoryName)
-        const reqObj = {name: name, id: this.id, subcategory_id: subcategory.id}
+        const reqObj = {
+            id: this.id, 
+            name,
+            price,
+            subcategory_id: subcategory.id
+        }
 
         itemsAdapter.patchItem(reqObj)
         // Item.getMainState()
