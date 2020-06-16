@@ -115,7 +115,7 @@ export default class Subcategory {
     }
 
     displayItems = (e) => {
-        if (e.target.nodeName === 'IMG') return;
+        if (e && e.target.nodeName === 'IMG') return;
 
         let main = document.querySelector('main')
         main.innerHTML = ""

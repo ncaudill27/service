@@ -2,7 +2,9 @@ import Item from './item.js'
 import Subcategory from './subcategory.js'
 import Category from './category.js'
 
-let resp = resp => resp.json()
+const resp = resp => resp.json();
+const main = document.querySelector('main');
+
 
 class ItemsAdapter {
     constructor(baseUrl) {
@@ -24,8 +26,8 @@ class ItemsAdapter {
 
     beginItemCreate = () => {
         // Render form then add event listeners
-        this.element.innerHTML = Item.newItemForm;
-        this.addBtn = document.getElementById('add');
+        main.innerHTML = Item.newItemForm;
+        this.addBtn = document.getElementById('add-item');
         this.addBtn.addEventListener('click', this.createItemRequest);
     }
 

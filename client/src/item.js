@@ -90,7 +90,7 @@ export default class Item {
         <label>Subcategory Name</label>
         <input type='text' name='subcategory'><br>
         <input id='cancel' type='submit' value='Cancel'>
-        <input id='add' type='submit' value='Add'>
+        <input id='add-item' type='submit' value='Add'>
     </div>
     `
 
