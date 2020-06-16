@@ -22,9 +22,9 @@ export default class Item {
     static updateItem({id, name, subcategory_id}) {
         const item = Item.findById(id)
         const subcategory = Subcategory.findById(item.subcategory_id)
-        
+
         item.name = name
-        
+
         if (item.subcategory_id != subcategory.id) {
             subcategory.toggleMenu()
             // TODO Find out why this isn't opening parent ul 
@@ -32,9 +32,9 @@ export default class Item {
             subcategory = Subcategory.findById(subcategory_id)
             subcategory.toggleMenu()
         }
-        item.render()
-        
-        subcategoriesAdapter.renderArrayOfItems(subcategory.items())
+        item.render();
+
+        subcategory.displayItems();
     }
     
     static previousState = []
@@ -149,9 +149,9 @@ export default class Item {
             <label>Name</label>
             <input type='text' value='${this.name}'><br>
             <label>Price</label>
-            <input type='text' value=${this.price}><br>
+            <input type='text' value='${this.price}'><br>
             <label>Subcategory</label>
-            <input type='text' value=${Subcategory.findById(this.subcategory_id).name}><br>
+            <input type='text' value='${Subcategory.findById(this.subcategory_id).name}'><br>
             <input id='cancel' type='submit' value='Cancel'>
             <input id='submit' type='submit' value='Edit'><br>
         <div>
@@ -164,12 +164,12 @@ export default class Item {
     }
 
     submitEdit = () => {
-        console.log(this);
         const inputs = document.querySelectorAll('input')
         const name = inputs[0].value
         const price = inputs[1].value
         const subcategoryName = inputs[2].value
         const subcategory = Subcategory.findByName(subcategoryName)
+        console.log(subcategoryName, subcategory.id);
         const reqObj = {
             id: this.id, 
             name,
