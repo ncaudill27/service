@@ -2,8 +2,7 @@ class Cart {
   constructor() {
 
     this.element = document.querySelector('.cart');
-    // Only displays a cart if it contains items
-    this.element.style.display = document.querySelector('.cart-item') ? 'block' : 'none';
+    this.element.style.display = 'none'
 
     this.subtotal = document.createElement('div');
     this.subtotal.className = 'subtotal'
@@ -19,7 +18,6 @@ class Cart {
         <span>$${currentPrice}</span>
       </div>
     `;
-    console.log(this.subtotal);
     
     this.element.appendChild(this.subtotal);
   }
@@ -29,8 +27,21 @@ class Cart {
     this.element.appendChild(item);
   }
 
+  addNewItem = item => {
+    const display = this.element.style.display;
+
+    if (display === 'none') this.element.style.display = 'block';
+    this.addToTotal(item);
+    this.element.appendChild(item.element);
+  }
+
   addToTotal = ({price}) => {
     this.currentPrice += price;
+    this.renderSubtotal();
+  }
+
+  subtractFromTotal = ({price}) => {
+    this.currentPrice -= price;
     this.renderSubtotal();
   }
 }

@@ -1,3 +1,5 @@
+import cart from './cart.js';
+
 export default class CartItem {
   constructor({id, name, price, currentStock}) {
     this.id = id;
@@ -5,7 +7,7 @@ export default class CartItem {
     this.price = price;
     this.currentStock = currentStock;
     this.cartItemCount = 1;
-
+    
     this.element = document.createElement('div');
     this.element.setAttribute('class', 'cart-item');
 
@@ -13,12 +15,13 @@ export default class CartItem {
   }
 
   render() {
+    this.currentPrice = Math.round((this.cartItemCount * this.price) * 100) / 100;
     this.element.innerHTML = `
       <p>
         (${this.cartItemCount}) ${this.name}
       </p>
       <span>
-        $${this.cartItemCount * this.price}
+        $${this.currentPrice}
       </span>
       <img class='decrement' src='/public/minus.png' alt='Decrement item'>
       <img class='delete' src='/public/deletebutton.png' alt='Delete button'>  
@@ -35,6 +38,7 @@ export default class CartItem {
     if (this.cartItemCount > 0) this.cartItemCount--;
     if (this.cartItemCount === 0) this.handleDelete();
     this.render();
+    cart.subtractFromTotal(this);
   }
 
   handleDelete = () => {

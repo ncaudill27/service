@@ -177,26 +177,10 @@ export default class Item {
     addToCart = (e) => {
         if (e.target.localName === 'img') return; // Ensures an item edit or delete button isn't being pressed
 
-        // const cart = document.querySelector('.cart');
-        // cart.style.display = 'block';
-        
-        
         if (this.cartItem) return this.incrementCartItem();
-        
-        this.cartItem = new CartItem(this);
-        cart.addToTotal(this.cartItem);
-        cart.renderCartItem(this.cartItem.element);
 
-        // const subTotal = document.createElement('div');
-        // subTotal.className = 'subtotal'
-        // subTotal.innerHTML = `
-        // <div class='content'>
-        //     <strong>Subtotal</strong>
-        //     <span>$XX.XX</span>
-        // </div>
-        // `;
-        // if (!cart.textContent.includes('Subtotal')) cart.appendChild(subTotal);
-        
+        this.cartItem = new CartItem(this);
+        cart.addNewItem(this.cartItem);
     }
 
     incrementCartItem() {
