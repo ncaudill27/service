@@ -19,7 +19,7 @@ export default class Item {
         console.log(sub.items())
     }
     
-    static updateItem({id, name, subcategory_id}) {
+    static updateItem({id, name, price, current_stock, subcategory_id}) {
         const item = Item.findById(id)
         const subcategory = Subcategory.findById(item.subcategory_id)
 
@@ -110,15 +110,9 @@ export default class Item {
         Item.all.push(this)
     }
 
-
-// ? Save funtionality for manager use?
-    // static appendAddItemBtn() {
-    //     const addBtn = document.createElement('div')
-    //     addBtn.setAttribute('class', 'card')
-    //     addBtn.setAttribute('id', 'add-item')
-    //     addBtn.innerHTML = `<h4>Add Item</h4>`
-    //     return addBtn
-    // }
+    subcategory() {
+        Subcategory.findById(this.subcategory_id);
+    }
 
     render = () => {
         this.element.innerHTML = `
@@ -140,6 +134,24 @@ export default class Item {
     handleItemEdit = () => {
         Item.saveMainState()
         this.renderEditForm()
+    }
+
+    update({name, price, current_stock, subcategory_id}) {
+        this.name = name;
+        this.price = price;
+        this.currentStock = current_stock;
+        this.subcategory_id = subcategory_id;
+
+        if (item.subcategory_id != subcategory.id) {
+            subcategory.toggleMenu()
+            // TODO Find out why this isn't opening parent ul 
+            item.subcategory_id = subcategory_id
+            subcategory = Subcategory.findById(subcategory_id)
+            subcategory.toggleMenu()
+        }
+        item.render();
+
+        subcategory.displayItems();
     }
 
     renderEditForm = () => {

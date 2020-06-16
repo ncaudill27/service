@@ -53,6 +53,7 @@ export default class Subcategory {
         this.category_id = category_id
 
 
+        this.items = 
         this.parentCategoryUl = document.getElementById(`submenu-${category_id}`) // Find parent node
 
         this.element = document.createElement('li')
@@ -60,6 +61,7 @@ export default class Subcategory {
         this.element.addEventListener('click', this.displayItems)
 
         this.element.innerHTML = this.render()
+
 
         this.deleteBtn = this.element.querySelector('img.delete')
         this.deleteBtn.addEventListener('click', ()=> subcategoriesAdapter.destroySubcategory(this.id))
