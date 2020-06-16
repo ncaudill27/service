@@ -124,9 +124,13 @@ export default class Item {
         <span>
             <img src='/public/fountainpen.png' alt='Edit button'>
         </span>
-        `
-        this.editBtn = this.element.querySelector('span')
-        this.editBtn.addEventListener('click', this.handleItemEdit)
+        `;
+
+        this.editBtn = this.element.querySelector('span');
+        this.editBtn.addEventListener('click', this.handleItemEdit);
+
+        this.deleteButton = this.element.querySelector('.delete');
+        this.deleteButton.addEventListener('click', itemsAdapter.handleItemDelete)
 
         return this.element
     }

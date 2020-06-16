@@ -8,9 +8,6 @@ class ItemsAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl
 
-        this.element = document.querySelector('main')
-        this.element.addEventListener('click', this.handleItemDelete)
-
         this.addBtn = document.querySelector('.add-item')
         this.addBtn.addEventListener('click', this.beginItemCreate)
     }
@@ -27,9 +24,9 @@ class ItemsAdapter {
 
     beginItemCreate = () => {
         // Render form then add event listeners
-        this.element.innerHTML = Item.newItemForm
-        this.addBtn = document.getElementById('add')
-        this.addBtn.addEventListener('click', this.createItemRequest)
+        this.element.innerHTML = Item.newItemForm;
+        this.addBtn = document.getElementById('add');
+        this.addBtn.addEventListener('click', this.createItemRequest);
     }
 
     renderNewItemForm = () => {
@@ -82,7 +79,7 @@ class ItemsAdapter {
         }
     }
     
-    deleteItem({item_id}) {        
+    deleteItem = ({item_id}) => {
         const item = Item.findById(item_id)
         console.log(item);
         

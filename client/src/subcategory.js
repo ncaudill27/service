@@ -88,8 +88,6 @@ export default class Subcategory {
     }
 
     handlePatchEvent = () => {
-        console.log('here');
-
         const main = document.querySelector('main')
         main.innerHTML = `
         <div class='form-card'>
