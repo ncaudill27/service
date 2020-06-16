@@ -12,13 +12,13 @@ class Cart {
   }
 
   renderSubtotal = () => {
-    const currentPrice = this.currentPrice;
-    // this.subtotal.innerHTML = `
-    //   <div class='content'>
-    //     <strong>Subtotal</strong>
-    //     <span>$${currentPrice}</span>
-    //   </div>
-    // `;
+    const currentPrice = Math.round(this.currentPrice * 100) / 100;
+    this.subtotal.innerHTML = `
+      <div class='content'>
+        <strong>Subtotal</strong>
+        <span>$${currentPrice}</span>
+      </div>
+    `;
     console.log(this.subtotal);
     
     this.element.appendChild(this.subtotal);
@@ -30,7 +30,7 @@ class Cart {
   }
 
   addToTotal = ({price}) => {
-    this.subtotal += price;
+    this.currentPrice += price;
     this.renderSubtotal();
   }
 }
