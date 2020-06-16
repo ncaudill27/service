@@ -61,12 +61,13 @@ export default class Category {
         <img class='edit' id='edit-category-${this.id}' src='/public/fountainpen.png' alt='Edit button'>
         `
         // Node to attach Subcategories to
-        this.submenu = document.createElement('ul')
-        this.submenu.setAttribute('id', `submenu-${this.id}`)
-        this.submenu.setAttribute('class', 'submenu')
+        this.submenu = document.createElement('ul');
+        this.submenu.setAttribute('id', `submenu-${this.id}`);
+        this.submenu.setAttribute('class', 'submenu');
+        this.submenu.style.display = 'none';
 
-        this.element.appendChild(this.submenu)
-        this.element.addEventListener('click', this.toggleSubmenu)
+        this.element.appendChild(this.submenu);
+        this.element.addEventListener('click', this.handleToggle);
 
         const deleteBtn = this.element.querySelector('img.delete')
         deleteBtn.addEventListener('click', this.handleDelete)
@@ -76,16 +77,18 @@ export default class Category {
         return this.element
     }
     
-    toggleSubmenu = (e) => {        
-        if (e.target.localName !== 'h2') return
-        if (e.target.parentNode.nodeName !== "DIV") return
+    handleToggle = (e) => {        
+        if (e.target.localName !== 'h2') return;
+        if (e.target.parentNode.nodeName !== "DIV") return;
+        this.toggleSubMenu();
+    }
 
-        const subMenu = this.submenu
-        if (subMenu.style.display === 'none') {
-            subMenu.style.display = 'block'
+    toggleSubMenu = () => {
+        if (this.submenu.style.display === 'none') {
+            this.submenu.style.display = 'block'
         } else {
-            subMenu.style.display = 'none'
-        }
+            this.submenu.style.display = 'none'
+        };
     }
 
     handleDelete = () => {

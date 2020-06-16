@@ -141,18 +141,9 @@ export default class Item {
         this.price = price;
         this.currentStock = current_stock;
         this.subcategory_id = subcategory_id;
-        console.log(this.subcategory().category().name);
-        
-        // if (item.subcategory_id != subcategory.id) {
-        //     subcategory.toggleMenu()
-        //     // TODO Find out why this isn't opening parent ul 
-        //     item.subcategory_id = subcategory_id
-        //     subcategory = Subcategory.findById(subcategory_id)
-        //     subcategory.toggleMenu()
-        // }
-        // item.render();
-
-        // subcategory.displayItems();
+        // this.subcategory().category().submenu.style.display = 'block'
+        this.render();
+        this.subcategory().displayItems();
     }
 
     renderEditForm = () => {

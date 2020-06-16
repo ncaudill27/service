@@ -58,11 +58,8 @@ export default class Subcategory {
         this.element.setAttribute('class', 'submenu-item')
         this.element.addEventListener('click', this.displayItems)
 
-        this.element.innerHTML = this.render()
-
-
         this.deleteBtn = this.element.querySelector('img.delete')
-        this.deleteBtn.addEventListener('click', ()=> subcategoriesAdapter.destroySubcategory(this.id))
+        this.deleteBtn.addEventListener('click', () => subcategoriesAdapter.destroySubcategory(this.id))
 
         this.editBtn = this.element.querySelector('img.edit')
         this.editBtn.addEventListener('click', this.handlePatchEvent)
@@ -79,14 +76,13 @@ export default class Subcategory {
     }
 
     render = () => {
-        const html = `
+        this.element.innerHTML = `
         <h2 data-subcategory-id='${this.id}'>
             ${this.name}
         </h2>
         <img class='delete' src='/public/deletebutton.png' alt='Delete button'>
         <img class='edit' src='/public/fountainpen.png' alt='Edit button'>
         `
-        return html
     }
 
     handlePatchEvent= () => {
