@@ -184,6 +184,7 @@ export default class Item {
         if (this.cartItem) return this.incrementCartItem();
         
         this.cartItem = new CartItem(this);
+        cart.addToTotal(this.cartItem);
         cart.renderCartItem(this.cartItem.element);
 
         // const subTotal = document.createElement('div');
@@ -201,5 +202,6 @@ export default class Item {
     incrementCartItem() {
         this.cartItem.cartItemCount++;
         this.cartItem.render();
+        cart.addToTotal(this.cartItem);
     }
 }

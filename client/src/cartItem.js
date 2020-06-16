@@ -18,7 +18,7 @@ export default class CartItem {
         (${this.cartItemCount}) ${this.name}
       </p>
       <span>
-        $${this.cartItemCount *  this.price}
+        $${this.cartItemCount * this.price}
       </span>
       <img class='decrement' src='/public/minus.png' alt='Decrement item'>
       <img class='delete' src='/public/deletebutton.png' alt='Delete button'>  

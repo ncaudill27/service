@@ -5,29 +5,36 @@ class Cart {
     // Only displays a cart if it contains items
     this.element.style.display = document.querySelector('.cart-item') ? 'block' : 'none';
 
-    this.renderSubtotal();
+    this.subtotal = document.createElement('div');
+    this.subtotal.className = 'subtotal'
+
+    this.currentPrice = 0;
   }
 
   renderSubtotal = () => {
-    const subtotal = document.createElement('div');
-    subtotal.className = 'subtotal'
-    subtotal.innerHTML = `
-    <div class='content'>
-        <strong>Subtotal</strong>
-        <span>$XX.XX</span>
-    </div>
-    `;
-    console.log(subtotal);
+    const currentPrice = this.currentPrice;
+    // this.subtotal.innerHTML = `
+    //   <div class='content'>
+    //     <strong>Subtotal</strong>
+    //     <span>$${currentPrice}</span>
+    //   </div>
+    // `;
+    console.log(this.subtotal);
     
-    this.element.appendChild(subtotal);
+    this.element.appendChild(this.subtotal);
   }
 
   renderCartItem = item => {
-    console.log('here');
+    this.element.style.display = 'block';
     this.element.appendChild(item);
+  }
+
+  addToTotal = ({price}) => {
+    this.subtotal += price;
+    this.renderSubtotal();
   }
 }
 
-const cart = new Cart()
+const cart = new Cart();
 
 export default cart;
