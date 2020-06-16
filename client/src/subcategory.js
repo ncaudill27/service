@@ -58,6 +58,8 @@ export default class Subcategory {
         this.element.setAttribute('class', 'submenu-item')
         this.element.addEventListener('click', this.displayItems)
 
+        this.render()
+
         this.deleteBtn = this.element.querySelector('img.delete')
         this.deleteBtn.addEventListener('click', () => subcategoriesAdapter.destroySubcategory(this.id))
 
@@ -85,7 +87,9 @@ export default class Subcategory {
         `
     }
 
-    handlePatchEvent= () => {
+    handlePatchEvent = () => {
+        console.log('here');
+
         const main = document.querySelector('main')
         main.innerHTML = `
         <div class='form-card'>
@@ -112,7 +116,9 @@ export default class Subcategory {
         return {id: id,name: newName, category_id: category.id}
     }
 
-    displayItems = () => {
+    displayItems = (e) => {
+        if (e.target.nodeName === 'IMG') return;
+
         let main = document.querySelector('main')
         main.innerHTML = ""
         // let sortBtn = document.getElementById('sort')
