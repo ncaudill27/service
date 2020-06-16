@@ -5,8 +5,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item = Item.create(name: params[:name], subcategory_id: params[:subcategory_id])
-    render_return_json
+    item = Item.create(name: params[:name], subcategory_id: params[:subcategory_id], price: params[:price])
+    render_return_json(item)
   end
 
   def update
@@ -14,18 +14,18 @@ class ItemsController < ApplicationController
     item.name = params[:name]
     item.subcategory_id = params[:subcategory_id]
     item.save
-    render_return_json
+    render_return_json(item)
   end
 
   def destroy
     item = Item.find_by_id(params[:id])
     item.destroy
-    render_return_json
+    render json: {item_id: item.id}
   end
 
   private
 
-  def render_return_json
+  def render_return_json(item)
     render json: item, only: [:id, :name, :subcategory_id, :price, :current_stock]
   end
 end

@@ -38,10 +38,12 @@ export default class CartItem {
     if (this.cartItemCount > 0) this.cartItemCount--;
     if (this.cartItemCount === 0) this.handleDelete();
     this.render();
-    cart.subtractFromTotal(this);
+    cart.subtractFromTotal(this.price);
   }
 
   handleDelete = () => {
+    cart.subtractFromTotal(this.currentPrice);
     this.element.remove();
+    this.cartItemCount = 0;
   }
 }

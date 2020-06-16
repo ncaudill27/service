@@ -77,8 +77,10 @@ class ItemsAdapter {
         }
     }
     
-    deleteItem({item_id}) {
+    deleteItem({item_id}) {        
         const item = Item.findById(item_id)
+        console.log(item);
+        
         item.element.remove()
     }
 

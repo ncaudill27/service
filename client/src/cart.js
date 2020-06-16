@@ -40,7 +40,7 @@ class Cart {
     this.renderSubtotal();
   }
 
-  subtractFromTotal = ({price}) => {
+  subtractFromTotal = price => {
     this.currentPrice -= price;
     this.renderSubtotal();
   }
