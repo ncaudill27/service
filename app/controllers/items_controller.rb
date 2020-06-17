@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
   def update
     item = Item.find_by_id(params[:id])
     item.name = params[:name]
+    item.price = params[:price]
     item.subcategory_id = params[:subcategory_id]
     item.save
     render_return_json(item)

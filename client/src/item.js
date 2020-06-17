@@ -187,7 +187,6 @@ export default class Item {
         itemsAdapter.patchItem(reqObj)
         .then(res => res.json())
         .then(this.update);
-        // Item.getMainState()
     }
 
 // Cart related functions
