@@ -10,6 +10,7 @@ export default class CartItem {
     
     this.element = document.createElement('div');
     this.element.setAttribute('class', 'cart-item');
+    this.element.counter = 5;
 
     this.render();
   }
@@ -38,14 +39,15 @@ export default class CartItem {
 
   decrementCartItem = () => {
     if (this.cartItemCount > 0) this.cartItemCount--;
-    if (this.cartItemCount === 0) this.handleDelete();
+    if (this.cartItemCount === 0) this.element.style.display = 'none';
     this.render();
     cart.subtractFromTotal(this.price);
   }
 
   handleDelete = () => {
     cart.subtractFromTotal(this.currentPrice);
-    this.element.remove();
+    
+    this.element.style.display = 'none' ;
     this.cartItemCount = 0;
   }
-}
+};

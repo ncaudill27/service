@@ -195,33 +195,17 @@ export default class Item {
         if (e.target.localName === 'img') return; // Ensures an item edit or delete button isn't being pressed
 
         // if (this. cartItem && this.cartItem.count === 0) delete this.cartItem;
-        if (this.cartItem) {
-            return this.incrementCartItem();
-        } else if (this.cartItem && this.cartItem.count === 0) {
-            this.cartItem.render()
-        }
+        if (this.cartItem) return this.incrementCartItem();
 
         this.cartItem = new CartItem(this);
-
-        // const observer = new MutationObserver(this.cb);
-        // console.log(this.cartItem.element);
-        
-        // observer.observe(this.cartItem.element, {count: 0});
 
         cart.addNewItem(this.cartItem);
     }
 
     incrementCartItem() {
+        if (this.cartItem.cartItemCount === 0) this.cartItem.element.style.display = 'block';
         this.cartItem.cartItemCount++;
         this.cartItem.render();
         cart.addToTotal(this.cartItem);
     }
-
-    cb = (mutationsList, observer) => {
-        for (let mutation of mutationsList) {
-            if (mutation.type === 'count') {
-                console.log(mutation);
-            }
-        }
-    };
 }

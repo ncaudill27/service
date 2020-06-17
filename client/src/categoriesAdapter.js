@@ -1,5 +1,4 @@
 import Category from './category.js';
-import Subcategory from './subcategory.js';
 import Item from './item.js';
 import subcategoriesAdapter from './subcategoriesAdapter.js';
 
@@ -10,9 +9,8 @@ class CategoriesAdapter {
         this.baseUrl = baseUrl
 
         this.element = document.querySelector('.sidebar')
-        this.addButton = document.querySelector('.add-category')
 
-        // this.element.addEventListener('click', this.destroyCategory)
+        this.addButton = document.querySelector('.add-category')
         this.addButton.addEventListener('click', this.handleAddCategory)
     }
 

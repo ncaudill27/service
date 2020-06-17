@@ -1,6 +1,5 @@
 import Subcategory from './subcategory.js'
 import Category from './category.js'
-import Item from './item.js'
 
 let res = res => res.json()
 
@@ -10,13 +9,10 @@ class SubcategoriesAdapter {
 
         this.element = document.querySelector('.sidebar')
 
-        // this.element.addEventListener('click', this.handleSubmenuSelection)
-
         this.addBtn = document.querySelector('.add-subcategory')
         this.addBtn.addEventListener('click', this.handleNewSubcategory)
     }
 
-    
     getSubcategories = () => {
         return fetch(this.baseUrl)
         .then(res)
