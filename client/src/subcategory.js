@@ -60,12 +60,6 @@ export default class Subcategory {
 
         this.render()
 
-        this.deleteBtn = this.element.querySelector('img.delete')
-        this.deleteBtn.addEventListener('click', () => subcategoriesAdapter.destroySubcategory(this.id))
-
-        this.editBtn = this.element.querySelector('img.edit')
-        this.editBtn.addEventListener('click', this.handlePatchEvent)
-
         Subcategory.all.push(this)
     }
     
@@ -86,6 +80,12 @@ export default class Subcategory {
         <img class='edit' src='/public/fountainpen.png' alt='Edit button'>
         `
         this.parentCategoryUl.appendChild(this.element);
+
+        this.deleteBtn = this.element.querySelector('img.delete')
+        this.deleteBtn.addEventListener('click', () => subcategoriesAdapter.destroySubcategory(this.id))
+
+        this.editBtn = this.element.querySelector('img.edit')
+        this.editBtn.addEventListener('click', this.handlePatchEvent)
     }
 
     handlePatchEvent = () => {

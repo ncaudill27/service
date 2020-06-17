@@ -10,7 +10,6 @@ export default class CartItem {
     
     this.element = document.createElement('div');
     this.element.setAttribute('class', 'cart-item');
-    this.element.counter = 5;
 
     this.render();
   }
