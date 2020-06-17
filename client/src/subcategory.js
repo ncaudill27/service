@@ -28,7 +28,7 @@ export default class Subcategory {
 
         subcategory.name = obj.name
         
-        if (obj.category_id != subcategory.category_id) {
+        if (obj.category_id !== subcategory.category_id) {
             subcategory.element.parentNode.style.display = 'none' // Close 'old' submenu
 
             // Set new parent submenu
@@ -48,12 +48,12 @@ export default class Subcategory {
     }
     
     constructor({id, name, category_id}) {
-        this.id = id
-        this.name = name
+        this.id =                    id
+        this.name =            name
         this.category_id = category_id
 
         this.parentCategoryUl = document.getElementById(`submenu-${category_id}`) // Find parent node
-
+        
         this.element = document.createElement('li')
         this.element.setAttribute('class', 'submenu-item')
         this.element.addEventListener('click', this.displayItems)
@@ -85,6 +85,7 @@ export default class Subcategory {
         <img class='delete' src='/public/deletebutton.png' alt='Delete button'>
         <img class='edit' src='/public/fountainpen.png' alt='Edit button'>
         `
+        this.parentCategoryUl.appendChild(this.element);
     }
 
     handlePatchEvent = () => {

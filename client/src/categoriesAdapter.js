@@ -1,8 +1,9 @@
-import Category from './category.js'
-import Item from './item.js'
-import subcategoriesAdapter from './subcategoriesAdapter.js'
+import Category from './category.js';
+import Subcategory from './subcategory.js';
+import Item from './item.js';
+import subcategoriesAdapter from './subcategoriesAdapter.js';
 
-let resp = resp => resp.json()
+let res = res => res.json();
 
 class CategoriesAdapter {
     constructor(baseUrl) {
@@ -16,14 +17,14 @@ class CategoriesAdapter {
     }
 
     getCategories = () => {
-        fetch(this.baseUrl)
-        .then(resp)
-        .then(this.renderCategories)
+        return fetch(this.baseUrl)
+        .then(res)
     }
 
-    renderCategories = categories => {
+    renderSidebar = categories => {
         categories.forEach(this.renderCategory)
         subcategoriesAdapter.getSubcategories()
+        .then(subcategoriesAdapter.renderSubcategories);
     }
 
     renderCategory = category => {
@@ -40,7 +41,7 @@ class CategoriesAdapter {
                 'Accept': 'application/json'
             }
         })
-        .then(resp)
+        .then(res)
         .then(Category.deleteCategory)
     }
 
@@ -70,7 +71,7 @@ class CategoriesAdapter {
             body: JSON.stringify(newCategoryObj)
         }
         fetch(this.baseUrl, configObj)
-        .then(resp)
+        .then(res)
         .then(this.renderCategory)
     }
 
@@ -84,7 +85,7 @@ class CategoriesAdapter {
             body: JSON.stringify(patchObj)
         }
         fetch(`${this.baseUrl}/${patchObj.id}`, configObj)
-        .then(resp)
+        .then(res)
         .then(Category.patchCategory)
     }
 }

@@ -2,7 +2,7 @@ import Subcategory from './subcategory.js'
 import Category from './category.js'
 import Item from './item.js'
 
-let resp = resp => resp.json()
+let res = res => res.json()
 
 class SubcategoriesAdapter {
     constructor(baseUrl) {
@@ -18,19 +18,12 @@ class SubcategoriesAdapter {
 
     
     getSubcategories = () => {
-        fetch(this.baseUrl)
-        .then(resp)
-        .then(this.renderSubcategories)
+        return fetch(this.baseUrl)
+        .then(res)
     }
 
     renderSubcategories = subcategories => {
-        subcategories.forEach(this.createAndRenderSubcategory)
-    }
-
-    createAndRenderSubcategory(sc) {
-        const subcategory = new Subcategory(sc)
-
-        subcategory.parentCategoryUl.appendChild(subcategory.element)
+        subcategories.forEach(sc => new Subcategory(sc).render());
     }
 
     handleNewSubcategory = () => {
@@ -52,9 +45,9 @@ class SubcategoriesAdapter {
             body: JSON.stringify(requestObj)
         }
         fetch(this.baseUrl, configObj)
-        .then(resp)
+        .then(res)
         .then(obj => {
-            const subcategory = this.createAndRenderSubcategory(obj)
+            const subcategory = new Subcategory(obj)
             subcategory.parentCategoryUl.style.display = 'block'
         })
     }
@@ -89,7 +82,7 @@ class SubcategoriesAdapter {
                 'Accept': 'application/json'
             }
         })
-        .then(resp)
+        .then(res)
         .then(Subcategory.deleteSubcategory)
     }
 
@@ -103,7 +96,7 @@ class SubcategoriesAdapter {
             body: JSON.stringify(patchObj)
         }
         fetch(`${this.baseUrl}/${patchObj.id}`, configObj)
-        .then(resp)
+        .then(res)
         .then(Subcategory.renderPatchResponse)
     }
 }
