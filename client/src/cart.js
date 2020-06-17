@@ -43,6 +43,7 @@ class Cart {
   subtractFromTotal = price => {
     this.currentPrice -= price;
     this.renderSubtotal();
+    if (this.currentPrice === 0) this.element.style.display = 'none';
   }
 }
 

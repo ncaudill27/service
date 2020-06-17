@@ -145,7 +145,7 @@ export default class Item {
         this.price = price;
         this.currentStock = current_stock;
         this.subcategory_id = subcategory_id;
-        // this.subcategory().category().submenu.style.display = 'block'
+
         this.render();
         this.subcategory().displayItems();
     }
