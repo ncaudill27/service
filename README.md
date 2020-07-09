@@ -42,8 +42,10 @@ Twitter: [@pixel8dChappie](https://twitter.com/pixel8dChappie)
 
 ## Version History
 
-* 0.1
+* 0.1.0
     * Initial Release
+* 0.2.0
+    * Add prices and allow tabs to total up items.
 
 ## License
 
