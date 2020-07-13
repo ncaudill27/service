@@ -49,6 +49,14 @@ export default class Category {
         this.element.setAttribute('class', 'menu-item')
         this.element.setAttribute('data-category-id', this.id)
 
+        // Node to attach Subcategories to
+        this.submenu = document.createElement('ul');
+        this.submenu.setAttribute('id', `submenu-${this.id}`);
+        this.submenu.setAttribute('class', 'submenu');
+        this.submenu.style.display = 'none';
+        
+        this.render();
+        categoriesAdapter.element.appendChild(this.element);
         Category.all.push(this)
     }
 
@@ -60,11 +68,6 @@ export default class Category {
         <img class='delete' id='delete-category-${this.id}' src='/public/deletebutton.png' alt='Delete button'>
         <img class='edit' id='edit-category-${this.id}' src='/public/fountainpen.png' alt='Edit button'>
         `
-        // Node to attach Subcategories to
-        this.submenu = document.createElement('ul');
-        this.submenu.setAttribute('id', `submenu-${this.id}`);
-        this.submenu.setAttribute('class', 'submenu');
-        this.submenu.style.display = 'none';
 
         this.element.appendChild(this.submenu);
         this.element.addEventListener('click', this.handleToggle);
@@ -74,7 +77,6 @@ export default class Category {
 
         const editBtn = this.element.querySelector('img.edit')
         editBtn.addEventListener('click', this.handleEdit)
-        return this.element
     }
     
     handleToggle = (e) => {        

@@ -10,6 +10,7 @@ body {
 /* set font sizes and remove margins to have more control */
 h1 { font-size: 2rem; margin: 0; }
 h2 { font-size: 1.6rem; margin: 0; padding: 0.25em 0.2em; }
+h4 { font-size: 1.1rem; margin: 0; padding: 0; }
 
 /* set colors for areas */
 header, aside { background-color:#FFDAB9; }
@@ -22,18 +23,23 @@ aside {
     width: 25%;
 }
 
+/* set background color for submenus */
+/* strip ul and li default spacing so only h2 is relavent */
 ul { list-style-type: none; margin: 0; background-color: #FFEFD5; }
 li { margin: 0; }
+
+
+
 img { display: none; }
 
-/* main {
+main {
+    margin-left: 25%;
+    max-width: 50%;
     display: grid;
-    grid-template-columns: 10em 10em 10em 10em;
+    grid-template-columns: repeat(4, fit-content(20%));
     grid-template-rows: auto;
-    grid-gap: 20px;
-    padding-top: 10px;
-    margin-left: 230px;
-} */
+    grid-gap: 1rem;
+}
 
 /* .sidebar {
     margin: 0;

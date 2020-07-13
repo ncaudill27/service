@@ -26,9 +26,7 @@ class CategoriesAdapter {
     }
 
     renderCategory = category => {
-        const cat = new Category(category)
-        const catDiv = cat.render()
-        this.element.appendChild(catDiv)
+        new Category(category);
     }
 
     destroyCategory = categoryId => {
