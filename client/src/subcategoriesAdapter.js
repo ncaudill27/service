@@ -7,7 +7,7 @@ class SubcategoriesAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl
 
-        this.element = document.querySelector('.sidebar')
+        this.element = document.querySelector('aside')
 
         this.addBtn = document.querySelector('.add-subcategory')
         this.addBtn.addEventListener('click', this.handleNewSubcategory)

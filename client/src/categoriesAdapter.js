@@ -8,7 +8,7 @@ class CategoriesAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl
 
-        this.element = document.querySelector('.sidebar')
+        this.element = document.querySelector('aside')
 
         this.addButton = document.querySelector('.add-category')
         this.addButton.addEventListener('click', this.handleAddCategory)
