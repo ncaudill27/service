@@ -1,11 +1,18 @@
+@charset "UTF-8";
+
+/* set base rules */
 body {
-    background-color: honeydew;
+    font-size: 16pt; /* 16 base font */
+    width: 100%; margin: 0%; /*  remove margins and fill screen */
+    background-color: honeydew; /*  set background color */
 }
 
+/* set font sizes */
+h1 { font-size: 2rem; }
+h2 { font-size: 1.6rem; }
+
 header {
-    background-color:#FFDAB9;
-    margin: 0 auto;
-    height: 50px;
+    background-color:#FFDAB9; /* establish main color */
     text-align: center;
 }
 
@@ -23,7 +30,7 @@ main {
     margin-left: 230px;
 }
 
-.sidebar {
+/* .sidebar {
     margin: 0;
     width: 200px;
     display: block;
@@ -174,4 +181,4 @@ img:hover {
     padding: 0px 25px 25px 25px;
     border-radius: 10px;
     text-align: center;
-}
+} */
