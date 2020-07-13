@@ -9,8 +9,10 @@ class SubcategoriesAdapter {
 
         this.element = document.querySelector('aside')
 
-        this.addBtn = document.querySelector('.add-subcategory')
+        this.addBtn = document.createElement('h2');
+        this.addBtn.innerText = 'Add Subcategory';
         this.addBtn.addEventListener('click', this.handleNewSubcategory)
+        this.element.appendChild(this.addBtn);
     }
 
     getSubcategories = () => {

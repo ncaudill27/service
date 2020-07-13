@@ -10,8 +10,10 @@ class CategoriesAdapter {
 
         this.element = document.querySelector('aside')
 
-        this.addButton = document.querySelector('.add-category')
+        this.addButton = document.createElement('h2')
+        this.addButton.innerText = 'Add Category'
         this.addButton.addEventListener('click', this.handleAddCategory)
+        this.element.appendChild(this.addButton);
     }
 
     getCategories = () => {

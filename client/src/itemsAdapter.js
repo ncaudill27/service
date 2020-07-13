@@ -10,8 +10,11 @@ class ItemsAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl
 
-        this.addBtn = document.querySelector('.add-item')
+        this.addBtn = document.createElement('h2')
+        this.addBtn.innerText = 'Add Item';
         this.addBtn.addEventListener('click', this.beginItemCreate)
+        const aside = document.querySelector('aside')
+        aside.appendChild(this.addBtn);
     }
 
     getItems = () => {
