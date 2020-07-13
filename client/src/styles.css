@@ -3,32 +3,30 @@
 /* set base rules */
 body {
     font-size: 16pt; /* 16 base font */
-    width: 100%; margin: 0%; /*  remove margins and fill screen */
+    width: 100%; margin: 0; /*  remove margins and fill screen */
     background-color: honeydew; /*  set background color */
 }
 
-/* set font sizes */
-h1 { font-size: 2rem; }
-h2 { font-size: 1.6rem; }
+/* set font sizes and remove margins to have more control */
+h1 { font-size: 2rem; margin: 0; }
+h2 { font-size: 1.6rem; margin: 0; }
 
 header {
     background-color:#FFDAB9; /* establish main color */
+    padding: 0.5em 0; 
     text-align: center;
 }
 
-header h1 {
-    padding: 10px;
-    margin: 0;
-}
 
-main {
+
+/* main {
     display: grid;
     grid-template-columns: 10em 10em 10em 10em;
     grid-template-rows: auto;
     grid-gap: 20px;
     padding-top: 10px;
     margin-left: 230px;
-}
+} */
 
 /* .sidebar {
     margin: 0;
